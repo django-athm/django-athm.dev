@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+{% load static django_athm %}
+
+{% block title %}Django ATHM - ATH Móvil Payment Integration Demo{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tip.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <div class="hero-gradient min-h-[70vh] flex items-center justify-center relative">
+        <div class="container mx-auto px-6 py-20 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="logo-container">
+                    <img src="{% static 'images/logo.png' %}" alt="Django ATHM Logo" class="w-full h-full object-contain">
+                </div>
+                <div class="badge-stat mb-6">Django Package</div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                    Django ATHM
+                </h1>
+                <p class="text-lg md:text-xl text-white/90 mb-8 font-medium max-w-2xl mx-auto">
+                    Seamless ATH Móvil payment integration for Django applications.
+                </p>
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <a href="https://github.com/django-athm/django-athm" target="_blank"
+                       class="btn btn-lg btn-primary-solid font-bold">
+                        View on GitHub →
+                    </a>
+                    <a href="https://django-athm.github.io/django-athm/" target="_blank"
+                       class="btn btn-lg btn-secondary-solid font-bold">
+                        Read Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Tip Demo Section -->
+    <div class="container mx-auto px-6 py-20">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4" style="color: var(--forest-primary);">
+                    Try it Live
+                </h2>
+                <p class="text-lg opacity-70 max-w-2xl mx-auto mb-6">
+                    Select a tip amount and experience the ATH Móvil checkout flow.
+                </p>
+                <div class="alert alert-warning max-w-2xl mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    <span><strong>Warning:</strong> This demo processes real ATH Móvil transactions. Completing the payment will charge your account.</span>
+                </div>
+            </div>
+
+            <div class="card bg-white card-elevated p-8 md:p-12">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Left: Tip Selection -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6" style="color: var(--forest-primary);">Select Tip Amount</h3>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <button class="tip-amount-btn btn btn-lg bg-base-200 hover:bg-base-300" data-amount="1">
+                                <span class="text-2xl font-bold">$1</span>
+                            </button>
+                            <button class="tip-amount-btn btn btn-lg bg-base-200 hover:bg-base-300" data-amount="3">
+                                <span class="text-2xl font-bold">$3</span>
+                            </button>
+                            <button class="tip-amount-btn btn btn-lg bg-base-200 hover:bg-base-300 active" data-amount="5">
+                                <span class="text-2xl font-bold">$5</span>
+                            </button>
+                            <button class="tip-amount-btn btn btn-lg bg-base-200 hover:bg-base-300" data-amount="10">
+                                <span class="text-2xl font-bold">$10</span>
+                            </button>
+                        </div>
+
+                        <div class="form-control mb-8">
+                            <label class="label">
+                                <span class="label-text font-semibold">Or enter custom amount</span>
+                            </label>
+                            <input type="number" id="custom-amount" placeholder="Enter amount"
+                                   class="input input-bordered input-lg" min="1" step="0.01">
+                        </div>
+
+                        <div class="bg-base-200 p-6 rounded-lg mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold">Tip Amount:</span>
+                                <span class="text-2xl font-bold" style="color: var(--forest-accent);" id="selected-amount">$5.00</span>
+                            </div>
+                            <div class="text-sm opacity-60">
+                                Supporting Django ATHM Development
+                            </div>
+                        </div>
+
+                        <!-- ATHM Button -->
+                        <div id="athm-button-wrapper"
+                             hx-get="{% url 'core:update_athm_button' %}"
+                             hx-trigger="load, amountChanged from:body delay:300ms"
+                             hx-include="[name='selected-amount-value']"
+                             hx-swap="innerHTML swap:0.3s"
+                             class="athm-transition">
+                            {% include 'partials/athm_button.html' %}
+                        </div>
+                        <input type="hidden" name="selected-amount-value" id="selected-amount-value" value="5.00">
+                    </div>
+
+                    <!-- Right: Info -->
+                    <div class="flex flex-col justify-center">
+                        <div class="mb-8">
+                            <div class="feature-icon w-16 h-16 rounded-2xl flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2" style="color: var(--forest-primary);">Secure Payments</h4>
+                            <p class="opacity-70">
+                                All transactions are processed through ATH Móvil's secure infrastructure.
+                            </p>
+                        </div>
+
+                        <div class="mb-8">
+                            <div class="feature-icon w-16 h-16 rounded-2xl flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2" style="color: var(--forest-primary);">Auto-Persisted</h4>
+                            <p class="opacity-70">
+                                Transaction data is stored on your database.
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="feature-icon w-16 h-16 rounded-2xl flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2" style="color: var(--forest-primary);">Django Admin Integration</h4>
+                            <p class="opacity-70">
+                                Process refunds directly from Django Admin. Full transaction management out of the box.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works - Horizontal Timeline -->
+    <div class="py-20" style="background: var(--cream-dark);">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center" style="color: var(--forest-primary);">
+                    How It Works
+                </h2>
+
+                <div class="horizontal-timeline">
+                    <div class="timeline-step">
+                        <div class="timeline-number">1</div>
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold mb-3" style="color: var(--forest-primary);">User Clicks Checkout</h3>
+                            <p class="text-sm opacity-70 leading-relaxed">
+                                Your customer initiates payment by clicking the ATH Móvil button rendered via the template tag.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-number">2</div>
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold mb-3" style="color: var(--forest-primary);">ATH Móvil Authentication</h3>
+                            <p class="text-sm opacity-70 leading-relaxed">
+                                User is redirected to the ATH Móvil app where they authenticate and approve the payment securely.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-number">3</div>
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold mb-3" style="color: var(--forest-primary);">Callback & Persistence</h3>
+                            <p class="text-sm opacity-70 leading-relaxed">
+                                Django ATHM receives the callback, validates the transaction, and automatically persists all data to your database.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-number">4</div>
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold mb-3" style="color: var(--forest-primary);">You're Done!</h3>
+                            <p class="text-sm opacity-70 leading-relaxed">
+                                Access transaction records via Django Admin or query the models directly. Process refunds with one click.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Integration Code Examples -->
+    <div class="container mx-auto px-6 py-20">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center" style="color: var(--forest-primary);">
+                Quick Integration
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Installation -->
+                <div class="card bg-white card-elevated p-8">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--forest-primary);">1. Install</h3>
+                    <div class="code-block p-6 pt-10">
+                        <pre class="text-sm leading-relaxed"><code>pip install django-athm</code></pre>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="card bg-white card-elevated p-8">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--forest-primary);">2. Add to INSTALLED_APPS</h3>
+                    <div class="code-block p-6 pt-10">
+                        <pre class="text-sm leading-relaxed"><code><span style="color: #6ba8a8;">INSTALLED_APPS</span> = [
+    ...
+    <span style="color: #7dbdbd;">'django_athm'</span>,
+]</code></pre>
+                    </div>
+                </div>
+
+                <!-- Environment Variables -->
+                <div class="card bg-white card-elevated p-8">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--forest-primary);">3. Set Environment Variables</h3>
+                    <div class="code-block p-6 pt-10">
+                        <pre class="text-sm leading-relaxed"><code><span style="color: #7dbdbd;"># .env</span>
+<span style="color: #6ba8a8;">ATHM_PUBLIC_KEY</span>=your_public_key
+<span style="color: #6ba8a8;">ATHM_PRIVATE_KEY</span>=your_private_key</code></pre>
+                    </div>
+                </div>
+
+                <!-- URLs -->
+                <div class="card bg-white card-elevated p-8">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--forest-primary);">4. Include URLs</h3>
+                    <div class="code-block p-6 pt-10">
+                        <pre class="text-sm leading-relaxed"><code><span style="color: #6ba8a8;">urlpatterns</span> = [
+    path(<span style="color: #7dbdbd;">'athm/'</span>, include(<span style="color: #7dbdbd;">'django_athm.urls'</span>)),
+]</code></pre>
+                    </div>
+                </div>
+
+                <!-- View with Context -->
+                <div class="card bg-white card-elevated p-8">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--forest-primary);">5. Pass Context in View</h3>
+                    <div class="code-block p-6 pt-10">
+                        <pre class="text-sm leading-relaxed"><code><span style="color: #6ba8a8;">context</span> = {
+    <span style="color: #7dbdbd;">"ATHM_CONFIG"</span>: {
+        <span style="color: #7dbdbd;">"total"</span>: <span style="color: #4ECDC4;">10.00</span>,
+        <span style="color: #7dbdbd;">"items"</span>: [{...}]
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Template Tag -->
+                <div class="card bg-white card-elevated p-8">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--forest-primary);">6. Use Template Tag</h3>
+                    <div class="code-block p-6 pt-10">
+                        <pre class="text-sm leading-relaxed"><code>{% verbatim %}{% load django_athm %}
+{% athm_button ATHM_CONFIG %}{% endverbatim %}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <!-- Footer CTA -->
+    <div class="hero-gradient py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Ready to use django-athm?
+            </h2>
+            <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                Check out the full documentation and start accepting mobile payments in your Django app today.
+            </p>
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a href="https://django-athm.github.io/django-athm/" target="_blank"
+                   class="btn btn-lg btn-primary-solid font-bold">
+                    Read Documentation →
+                </a>
+                <a href="https://github.com/django-athm/django-athm" target="_blank"
+                   class="btn btn-lg btn-secondary-solid font-bold">
+                    ⭐ Star on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="py-8 bg-base-200">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm opacity-60 max-w-3xl mx-auto">
+                This project is <strong>not</strong> affiliated with or endorsed by <a href="https://www.evertecinc.com/" target="_blank" class="link">Evertec, Inc.</a> or <a href="https://portal.athmovil.com/" target="_blank" class="link">ATH Móvil</a> in any way.
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        // Tip amount selector
+        document.querySelectorAll('.tip-amount-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active from all
+                document.querySelectorAll('.tip-amount-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                this.classList.add('active');
+
+                const amount = parseFloat(this.dataset.amount);
+                updateAmount(amount);
+
+                // Clear custom input
+                document.getElementById('custom-amount').value = '';
+            });
+        });
+
+        // Custom amount input
+        document.getElementById('custom-amount').addEventListener('input', function() {
+            const amount = parseFloat(this.value) || 0;
+            if (amount > 0) {
+                // Remove active from preset buttons
+                document.querySelectorAll('.tip-amount-btn').forEach(b => b.classList.remove('active'));
+                updateAmount(amount);
+            }
+        });
+
+        function updateAmount(amount) {
+            // Update visual display
+            document.getElementById('selected-amount').textContent = '$' + amount.toFixed(2);
+
+            // Update hidden input and trigger HTMX reload
+            const hiddenInput = document.getElementById('selected-amount-value');
+            hiddenInput.value = amount.toFixed(2);
+
+            // Trigger custom event that HTMX is listening for
+            document.body.dispatchEvent(new CustomEvent('amountChanged'));
+        }
+    </script>
+{% endblock %}

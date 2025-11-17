@@ -5,5 +5,6 @@ from . import views
 app_name = "core"
 
 urlpatterns = [
-    path("", views.landing, name="landing"),
+    path("", views.tip_page, name="landing"),
+    path("update-athm-button/", views.update_athm_button, name="update_athm_button"),
 ]

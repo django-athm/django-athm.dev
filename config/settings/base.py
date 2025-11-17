@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_htmx",
     "tailwind",
+    "django_athm",
     "athm_tip.core",
     "athm_tip.theme",
 ]
@@ -53,6 +55,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -132,6 +135,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -140,3 +144,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Tailwind
 TAILWIND_APP_NAME = "athm_tip.theme"
+
+# Django ATHM
+ATHM_PUBLIC_KEY = os.getenv("ATHM_PUBLIC_KEY")
+ATHM_PRIVATE_KEY = os.getenv("ATHM_PRIVATE_KEY")
