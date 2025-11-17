@@ -1,0 +1,135 @@
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.0"
+version_files = [
+    "pyproject.toml:version"
+]
+style = [
+    ["qmark", "fg:#ff9d00 bold"],
+    ["question", "bold"],
+    ["answer", "fg:#ff9d00 bold"],
+    ["pointer", "fg:#ff9d00 bold"],
+    ["highlighted", "fg:#ff9d00 bold"],
+    ["selected", "fg:#cc5454"],
+    ["separator", "fg:#cc5454"],
+    ["instruction", ""],
+    ["text", ""],
+    ["disabled", "fg:#858585 italic"]
+]
+
+# Conventional Commits specification v1.0.0
+# https://www.conventionalcommits.org/en/v1.0.0/
+
+[tool.commitizen.customize]
+message_template = """{{change_type}}{% if scope %}({{scope}}){% endif %}{% if is_breaking_change %}!{% endif %}: {{message}}{% if body %}
+
+{{body}}{% endif %}{% if is_breaking_change %}
+
+BREAKING CHANGE: {{breaking_change_explanation}}{% endif %}{% if footer %}
+
+{{footer}}{% endif %}"""
+
+example = """feat(auth): add magic link authentication
+
+Implements passwordless authentication via email magic links.
+This replaces the traditional password-based login system.
+
+BREAKING CHANGE: Password field is now nullable, existing users must migrate to passwordless auth.
+
+Closes #123"""
+
+schema = """
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+"""
+
+schema_pattern = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\\([a-zA-Z0-9_-]+\\))?(!)?:( .+)"
+
+bump_pattern = "^(feat|fix|refactor|perf|BREAKING CHANGE)"
+bump_map = {"BREAKING CHANGE" = "MAJOR", "feat" = "MINOR", "fix" = "PATCH", "refactor" = "PATCH", "perf" = "PATCH"}
+
+change_type_order = ["BREAKING CHANGE", "feat", "fix", "refactor", "perf", "build", "ci", "docs", "style", "test", "chore"]
+
+[[tool.commitizen.customize.questions]]
+type = "list"
+name = "change_type"
+message = "Select the type of change you are committing:"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "feat"
+name = "feat: A new feature for the user"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "fix"
+name = "fix: A bug fix"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "docs"
+name = "docs: Documentation only changes"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "style"
+name = "style: Changes that do not affect the meaning of the code (formatting, missing semi-colons, etc)"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "refactor"
+name = "refactor: A code change that neither fixes a bug nor adds a feature"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "perf"
+name = "perf: A code change that improves performance"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "test"
+name = "test: Adding missing tests or correcting existing tests"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "build"
+name = "build: Changes that affect the build system or external dependencies"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "ci"
+name = "ci: Changes to CI configuration files and scripts"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "chore"
+name = "chore: Other changes that don't modify src or test files"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "revert"
+name = "revert: Reverts a previous commit"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "scope"
+message = "What is the scope of this change? (optional, e.g., 'auth', 'creators', 'users'):"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "message"
+message = "Write a short, imperative tense description of the change:"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "body"
+message = "Provide additional contextual information about the change (optional):"
+
+[[tool.commitizen.customize.questions]]
+type = "confirm"
+name = "is_breaking_change"
+message = "Is this a BREAKING CHANGE?"
+default = false
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "breaking_change_explanation"
+message = "Describe what breaks and the migration path:"
+filter = "lambda x: x if x else ''"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "footer"
+message = "Footer (optional, e.g., 'Closes #123', 'Refs #456'):"
