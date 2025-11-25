@@ -15,7 +15,7 @@
                 <div class="logo-container">
                     <img src="{% static 'images/logo.png' %}" alt="Django ATHM Logo" class="w-full h-full object-contain">
                 </div>
-                <div class="badge-stat mb-6">Django Package</div>
+                <a href="https://djangopackages.org/packages/p/django-athm/" target="_blank" class="badge-stat mb-6">Django Package</a>
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
                     Django ATHM
                 </h1>
@@ -56,29 +56,29 @@
                 <div class="grid md:grid-cols-2 gap-12">
                     <!-- Left: Tip Selection -->
                     <div>
-                        <h3 class="text-2xl font-bold mb-6" style="color: var(--forest-primary);">Select Tip Amount</h3>
+                        <h3 class="text-2xl font-bold mb-6" style="color: var(--forest-primary);">Tip Amount</h3>
 
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <button class="tip-amount-btn btn btn-lg bg-base-200 hover:bg-base-300" data-amount="1">
+                        <div class="grid grid-cols-2 gap-4 mb-6 opacity-50">
+                            <button class="tip-amount-btn btn btn-lg bg-base-200" data-amount="1" disabled>
                                 <span class="text-2xl font-bold">$1</span>
                             </button>
-                            <button class="tip-amount-btn btn btn-lg bg-base-200 hover:bg-base-300" data-amount="3">
+                            <button class="tip-amount-btn btn btn-lg bg-base-200" data-amount="3" disabled>
                                 <span class="text-2xl font-bold">$3</span>
                             </button>
-                            <button class="tip-amount-btn btn btn-lg bg-base-200 hover:bg-base-300 active" data-amount="5">
+                            <button class="tip-amount-btn btn btn-lg bg-base-200 active" data-amount="5" disabled>
                                 <span class="text-2xl font-bold">$5</span>
                             </button>
-                            <button class="tip-amount-btn btn btn-lg bg-base-200 hover:bg-base-300" data-amount="10">
+                            <button class="tip-amount-btn btn btn-lg bg-base-200" data-amount="10" disabled>
                                 <span class="text-2xl font-bold">$10</span>
                             </button>
                         </div>
 
-                        <div class="form-control mb-8">
+                        <div class="form-control mb-8 opacity-50">
                             <label class="label">
                                 <span class="label-text font-semibold">Or enter custom amount</span>
                             </label>
                             <input type="number" id="custom-amount" placeholder="Enter amount"
-                                   class="input input-bordered input-lg" min="1" step="0.01">
+                                   class="input input-bordered input-lg" min="1" step="0.01" disabled>
                         </div>
 
                         <div class="bg-base-200 p-6 rounded-lg mb-6">
@@ -92,15 +92,9 @@
                         </div>
 
                         <!-- ATHM Button -->
-                        <div id="athm-button-wrapper"
-                             hx-get="{% url 'core:update_athm_button' %}"
-                             hx-trigger="load, amountChanged from:body delay:300ms"
-                             hx-include="[name='selected-amount-value']"
-                             hx-swap="innerHTML swap:0.3s"
-                             class="athm-transition">
+                        <div id="athm-button-wrapper">
                             {% include 'partials/athm_button.html' %}
                         </div>
-                        <input type="hidden" name="selected-amount-value" id="selected-amount-value" value="5.00">
                     </div>
 
                     <!-- Right: Info -->
@@ -304,46 +298,15 @@
             </p>
         </div>
     </div>
+
+    <!-- Django Webring -->
+    <div class="py-8">
+        <div class="container mx-auto px-6 text-center">
+            <webring-css site="https://djangoathm.org"></webring-css>
+        </div>
+    </div>
 {% endblock %}
 
 {% block extra_js %}
-    <script>
-        // Tip amount selector
-        document.querySelectorAll('.tip-amount-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active from all
-                document.querySelectorAll('.tip-amount-btn').forEach(b => b.classList.remove('active'));
-                // Add active to clicked
-                this.classList.add('active');
-
-                const amount = parseFloat(this.dataset.amount);
-                updateAmount(amount);
-
-                // Clear custom input
-                document.getElementById('custom-amount').value = '';
-            });
-        });
-
-        // Custom amount input
-        document.getElementById('custom-amount').addEventListener('input', function() {
-            const amount = parseFloat(this.value) || 0;
-            if (amount > 0) {
-                // Remove active from preset buttons
-                document.querySelectorAll('.tip-amount-btn').forEach(b => b.classList.remove('active'));
-                updateAmount(amount);
-            }
-        });
-
-        function updateAmount(amount) {
-            // Update visual display
-            document.getElementById('selected-amount').textContent = '$' + amount.toFixed(2);
-
-            // Update hidden input and trigger HTMX reload
-            const hiddenInput = document.getElementById('selected-amount-value');
-            hiddenInput.value = amount.toFixed(2);
-
-            // Trigger custom event that HTMX is listening for
-            document.body.dispatchEvent(new CustomEvent('amountChanged'));
-        }
-    </script>
+    <script src="https://djangowebring.com/static/webring.js"></script>
 {% endblock %}

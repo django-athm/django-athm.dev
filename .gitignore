@@ -212,6 +212,8 @@ __marimo__/
 # LLMs
 .claude/
 
+.vscode/
+
 tmp/emails/
 docs/TODO.md
 TODO.md

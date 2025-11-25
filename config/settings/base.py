@@ -14,6 +14,10 @@ import os
 from pathlib import Path
 
 import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent.parent / ".env")
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 APPS_DIR = Path(BASE_DIR).joinpath("vg_stack")
@@ -146,5 +150,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 TAILWIND_APP_NAME = "athm_tip.theme"
 
 # Django ATHM
-ATHM_PUBLIC_KEY = os.getenv("ATHM_PUBLIC_KEY")
-ATHM_PRIVATE_KEY = os.getenv("ATHM_PRIVATE_KEY")
+DJANGO_ATHM_PUBLIC_TOKEN = os.getenv("ATHM_PUBLIC_TOKEN")
+DJANGO_ATHM_PRIVATE_TOKEN = os.getenv("ATHM_PRIVATE_TOKEN")
