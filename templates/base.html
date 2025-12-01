@@ -1,70 +1,39 @@
 {% load static tailwind_tags django_htmx %}
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="bumblebee">
 <head>
-    <title>{% block title %}Django ATHM - ATH Móvil Payment Integration{% endblock %}</title>
+    <title>{% block title %}Django ATHM - ATH Movil Payment Integration{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% block meta_tags %}{% endblock %}
 
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
     {% tailwind_css %}
 
-    <!-- Core Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     {% block extra_scripts %}{% endblock %}
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Base Styles -->
-    <style>
-        :root {
-            --forest-primary: #1a3d3d;
-            --forest-medium: #2d5f5f;
-            --forest-light: #4a8080;
-            --forest-accent: #6ba8a8;
-            --cream: #fafaf8;
-            --cream-dark: #f5f5f0;
-            --cream-darker: #e8e6df;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--cream);
-            color: var(--forest-primary);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     {% block extra_css %}{% endblock %}
+
+    <script async src="https://analytics.kuribosoft.com/js/pa-hiEVQxxH0x5AkmCUQHQlK.js"></script>
+    <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
 </head>
 
 <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+    {% include 'partials/_header.html' %}
+
     {% block body %}
         {% block content %}{% endblock %}
     {% endblock %}
 
     {% block footer %}{% endblock %}
 
-    <!-- Toast Notifications -->
-    {% if messages %}
-    <div class="toast toast-top toast-end">
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            <span>{{ message }}</span>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
+    {% include 'partials/_toasts.html' %}
 
     {% block extra_js %}{% endblock %}
 </body>
