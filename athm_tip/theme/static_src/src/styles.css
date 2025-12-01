@@ -1,5 +1,11 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: bumblebee --default, coffee --prefersdark;
+}
+
+@theme {
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+}
 
 /**
   * A catch-all path to Django template files, JavaScript, and Python files
