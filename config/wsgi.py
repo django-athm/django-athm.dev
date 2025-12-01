@@ -1,12 +1,3 @@
-"""
-WSGI config for vg_stack project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
-"""
-
 import os
 import sys
 from pathlib import Path
@@ -18,8 +9,6 @@ load_dotenv(
     dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
 )
 
-# This allows easy placement of apps within the interior
-# athm_tip directory.
 app_path = Path(__file__).resolve().parent.parent.joinpath("athm_tip")
 sys.path.append(str(app_path))
 
