@@ -217,3 +217,4 @@ __marimo__/
 tmp/emails/
 docs/TODO.md
 TODO.md
+.DS_Store
