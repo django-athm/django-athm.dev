@@ -73,7 +73,7 @@ Transaction Date: {payment.transaction_date or payment.created}
 Created: {payment.created}
 """
 
-    mail_admins(subject, message, fail_silently=True)
+    mail_admins(subject, message)
 
 
 @receiver(payment_cancelled)
