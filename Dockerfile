@@ -16,6 +16,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     postgresql-client \
     curl \
+    gettext \
     && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
     && apt-get clean \
@@ -41,6 +42,9 @@ COPY . .
 # Install the project in editable mode
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev
+
+# Compile translation messages
+RUN uv run python manage.py compilemessages
 
 # Prepare static files with Tailwind CSS
 RUN uv run python manage.py tailwind install
