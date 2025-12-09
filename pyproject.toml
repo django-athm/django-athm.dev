@@ -10,6 +10,7 @@ dependencies = [
     "django-anymail[amazon-ses]>=13.1",
     "django-athm==1.0.0b1",
     "django-tailwind[cookiecutter,honcho,reload]>=4.4.1",
+    "psycopg>=3.3.2",
     "python-dotenv>=1.2.1",
     "sentry-sdk>=2.44.0",
     "whitenoise>=6.11.0",
