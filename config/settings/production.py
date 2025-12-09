@@ -42,7 +42,7 @@ if SENTRY_DSN:
 # LOGGING
 LOGGING = {
     "version": 1,
-    "disable_existing_loggers": True,
+    "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s "
@@ -65,6 +65,11 @@ LOGGING = {
         },
         "django.security.DisallowedHost": {
             "level": "ERROR",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+        "django_athm": {
+            "level": "INFO",
             "handlers": ["console"],
             "propagate": False,
         },
