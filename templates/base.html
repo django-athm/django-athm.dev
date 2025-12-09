@@ -1,8 +1,14 @@
-{% load static tailwind_tags django_htmx %}
+{% load static tailwind_tags i18n %}
 <!DOCTYPE html>
-<html lang="en" data-theme="bumblebee">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
-    <title>{% block title %}Django ATHM - ATH Movil Payment Integration{% endblock %}</title>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'bumblebee';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <title>{% block title %}{% trans "Django ATHM - ATH Móvil Payment Integration" %}{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,7 +17,6 @@
     <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
     {% tailwind_css %}
 
-    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     {% block extra_scripts %}{% endblock %}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +29,7 @@
     <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
 </head>
 
-<body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+<body>
     {% include 'partials/_header.html' %}
 
     {% block body %}
@@ -34,6 +39,24 @@
     {% block footer %}{% endblock %}
 
     {% include 'partials/_toasts.html' %}
+
+    <script>
+        (function() {
+            const themeController = document.querySelector('.theme-controller');
+            if (themeController) {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'coffee') {
+                    themeController.checked = true;
+                }
+
+                themeController.addEventListener('change', function() {
+                    const theme = this.checked ? this.value : 'bumblebee';
+                    localStorage.setItem('theme', theme);
+                    document.documentElement.setAttribute('data-theme', theme);
+                });
+            }
+        })();
+    </script>
 
     {% block extra_js %}{% endblock %}
 </body>

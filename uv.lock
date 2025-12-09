@@ -75,8 +75,8 @@ source = { virtual = "." }
 dependencies = [
     { name = "dj-database-url" },
     { name = "django" },
+    { name = "django-anymail", extra = ["amazon-ses"] },
     { name = "django-athm" },
-    { name = "django-htmx" },
     { name = "django-tailwind", extra = ["cookiecutter", "honcho", "reload"] },
     { name = "python-dotenv" },
     { name = "sentry-sdk" },
@@ -94,8 +94,8 @@ dev = [
 requires-dist = [
     { name = "dj-database-url", specifier = ">=3.0.1" },
     { name = "django", specifier = ">=5.2.8" },
-    { name = "django-athm", editable = "../django-athm" },
-    { name = "django-htmx", specifier = ">=1.26.0" },
+    { name = "django-anymail", extras = ["amazon-ses"], specifier = ">=13.1" },
+    { name = "django-athm", specifier = "==1.0.0b1" },
     { name = "django-tailwind", extras = ["cookiecutter", "honcho", "reload"], specifier = ">=4.4.1" },
     { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "sentry-sdk", specifier = ">=2.44.0" },
@@ -119,6 +119,34 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a7/fe/7ebfec74d49f97fc55cd38240c7a7d08134002b1e14be8c3897c0dd5e49b/binaryornot-0.4.4.tar.gz", hash = "sha256:359501dfc9d40632edc9fac890e19542db1a287bbcfa58175b66658392018061", size = 371054, upload-time = "2017-08-03T15:55:25.08Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/24/7e/f7b6f453e6481d1e233540262ccbfcf89adcd43606f44a028d7f5fae5eb2/binaryornot-0.4.4-py2.py3-none-any.whl", hash = "sha256:b8b71173c917bddcd2c16070412e369c3ed7f0528926f70cac18a6c97fd563e4", size = 9006, upload-time = "2017-08-03T15:55:31.23Z" },
+]
+
+[[package]]
+name = "boto3"
+version = "1.42.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "botocore" },
+    { name = "jmespath" },
+    { name = "s3transfer" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8b/91/c00b45b5ca95184f7ab6140f586ba7d23074168ee3feae3eaf6954cc11c3/boto3-1.42.5.tar.gz", hash = "sha256:e3b7be255e5e29272b6424af4417005384f5a3f1caf6ca3352258ee1d9b8551a", size = 112754, upload-time = "2025-12-08T20:28:37.546Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a1/3c/e70f47afdaf9172f90e80615f923fbb09f7fb4e5ea89e2d95562ec7f95c2/boto3-1.42.5-py3-none-any.whl", hash = "sha256:7d22cd102c77c37d552783308eeb01a088c0e3f6e707157dd6d1842b205ffce7", size = 140572, upload-time = "2025-12-08T20:28:36.076Z" },
+]
+
+[[package]]
+name = "botocore"
+version = "1.42.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "jmespath" },
+    { name = "python-dateutil" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8c/46/5b40b1deb780869ca9f0c1de47062a78a0494b53d6f9d6bad10fc38eef9d/botocore-1.42.5.tar.gz", hash = "sha256:37bfc487f14286d9795920807fcb8318b940835b18fff6bec5253449f377136f", size = 14851117, upload-time = "2025-12-08T20:28:26.876Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8b/9a/da5e6cabf4da855d182fcdacf3573b69f30899e0e6c3e0d91ce6ad92ce74/botocore-1.42.5-py3-none-any.whl", hash = "sha256:6aa487f1876c881e2143f6a186b7d8faaf042fc05e0ba7421d821f145356a0c9", size = 14525346, upload-time = "2025-12-08T20:28:24.06Z" },
 ]
 
 [[package]]
@@ -309,35 +337,35 @@ wheels = [
 ]
 
 [[package]]
+name = "django-anymail"
+version = "13.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "requests" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a3/a5/258d7b7bc1b0ca91791c25c704fa4c2d500727d0c3e29843c182f9f9c4be/django_anymail-13.1.tar.gz", hash = "sha256:b51783176f8a8382e958808151551558e4a46d1375fbc343742d1ebd06ce8e9e", size = 96518, upload-time = "2025-09-03T20:00:21.071Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c9/ba/d34a011cb8da04ed4a7c60b9a7aa25eed61348d1f6113af66ba725b56ae4/django_anymail-13.1-py3-none-any.whl", hash = "sha256:63e48402ec8258f17640eb73c8c64141f16d2f8ae7d448d0fb1c66e82b7cbcf6", size = 134063, upload-time = "2025-09-03T20:00:19.427Z" },
+]
+
+[package.optional-dependencies]
+amazon-ses = [
+    { name = "boto3" },
+]
+
+[[package]]
 name = "django-athm"
-version = "0.7.0"
-source = { editable = "../django-athm" }
+version = "1.0.0b1"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "athm" },
-    { name = "httpx" },
-    { name = "phonenumberslite" },
 ]
-
-[package.metadata]
-requires-dist = [
-    { name = "athm", specifier = ">=0.4.0" },
-    { name = "django", marker = "extra == 'dev'", specifier = ">=5.1,<6.0" },
-    { name = "httpx", specifier = ">=0.23.0,<1.0" },
-    { name = "mkdocs", marker = "extra == 'dev'", specifier = ">=1.3.1,<2.0" },
-    { name = "phonenumberslite", specifier = ">=8.12.53" },
-    { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=2.10.1,<4.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.4.0,<9.0" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.1.0,<6.0" },
-    { name = "pytest-django", marker = "extra == 'dev'", specifier = ">=4.7.0,<5.0" },
-    { name = "pytest-mock", marker = "extra == 'dev'", specifier = ">=3.12.0,<4.0" },
-    { name = "respx", marker = "extra == 'dev'", specifier = ">=0.20.0,<1.0" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.4.0" },
-    { name = "tox", marker = "extra == 'dev'", specifier = ">=4.0,<5.0" },
+sdist = { url = "https://files.pythonhosted.org/packages/a3/d1/ee757036f98f18cfd3314b764525c547f35a6e1c9173c96340fbc4a41ea3/django_athm-1.0.0b1.tar.gz", hash = "sha256:eedc28c498767b528b0a391f46f7f94998af30dcb83bc2b7b726f34a3f4af954", size = 38385, upload-time = "2025-12-09T19:54:43.708Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/25/bb/edaca9e1137ef44d2bc36dc0994888ac9450c9a28679a049ff8e673ee38c/django_athm-1.0.0b1-py3-none-any.whl", hash = "sha256:b84b31f383b9c2ea60702ab113155cf8462f2669f8d4abdd78afb55d44033f48", size = 46223, upload-time = "2025-12-09T19:54:42.685Z" },
 ]
-provides-extras = ["dev"]
-
-[package.metadata.requires-dev]
-dev = [{ name = "ruff", specifier = ">=0.14.6" }]
 
 [[package]]
 name = "django-browser-reload"
@@ -350,19 +378,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/79/ef/ab407c1a2f14e13c75a6419a2d124954aa0364f62580ad95a3d31dc6c73d/django_browser_reload-1.21.0.tar.gz", hash = "sha256:3335ad3d107eb657f623d1a8e680dfbcab8a83ae1f94df1895e069dddf5604ba", size = 15800, upload-time = "2025-09-22T17:00:35.199Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/46/61/1b4a8c589652859995bcab87682286443eb9fdf2d7fd584975b9ffc1db33/django_browser_reload-1.21.0-py3-none-any.whl", hash = "sha256:0b2a86ab460774fa9bb142a121c70e75a72f18109f51a4f6de409cd633d3a70d", size = 12852, upload-time = "2025-09-22T17:00:33.479Z" },
-]
-
-[[package]]
-name = "django-htmx"
-version = "1.26.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "asgiref" },
-    { name = "django" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/e8/ea/3d0fb10e6ebbceab57b5e228c8ae5e4ebed3b6d6767d07468923ca000fa3/django_htmx-1.26.0.tar.gz", hash = "sha256:88ecc2f8a3f13ad5a50e6b16be127f04fba369124cc40a09b21ce33babb04aa6", size = 65345, upload-time = "2025-09-22T09:23:41.582Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/dd/fc/dbbc54af504427f5f248a73cf9a2d40bfd22631bbf042d313563acc4d223/django_htmx-1.26.0-py3-none-any.whl", hash = "sha256:3a80ffaa6df5a07e833752cd8ada7cee0fa711787841ab17a805075b1aecacc7", size = 62122, upload-time = "2025-09-22T09:23:40.18Z" },
 ]
 
 [[package]]
@@ -478,6 +493,15 @@ wheels = [
 ]
 
 [[package]]
+name = "jmespath"
+version = "1.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/00/2a/e867e8531cf3e36b41201936b7fa7ba7b5702dbef42922193f05c8976cd6/jmespath-1.0.1.tar.gz", hash = "sha256:90261b206d6defd58fdd5e85f478bf633a2901798906be2ad389150c5c60edbe", size = 25843, upload-time = "2022-06-17T18:00:12.224Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/31/b4/b9b800c45527aadd64d5b442f9b932b00648617eb5d63d2c7a6587b7cafc/jmespath-1.0.1-py3-none-any.whl", hash = "sha256:02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980", size = 20256, upload-time = "2022-06-17T18:00:10.251Z" },
+]
+
+[[package]]
 name = "markdown-it-py"
 version = "4.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -566,15 +590,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz", hash = "sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f", size = 165727, upload-time = "2025-04-19T11:48:59.673Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/20/12/38679034af332785aac8774540895e234f4d07f7545804097de4b666afd8/packaging-25.0-py3-none-any.whl", hash = "sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484", size = 66469, upload-time = "2025-04-19T11:48:57.875Z" },
-]
-
-[[package]]
-name = "phonenumberslite"
-version = "8.13.55"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/9c/b9/e37adc408dd605228020a5adc7f897353a90c597239bad52ac7fdf356f4c/phonenumberslite-8.13.55.tar.gz", hash = "sha256:b961bb36d32688bcf28ec308f8f11f502353c9aa5f9fb18261b215c6b0e6b898", size = 2296867, upload-time = "2025-02-15T08:05:36.835Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/4a/8cf5566aed1e39f426d40ce6ba0b72d8c5fc1452feef6a64fb5127ebb996/phonenumberslite-8.13.55-py2.py3-none-any.whl", hash = "sha256:3daa107c7d89576effa8ecc0ed17f0e8845055836590a96fa5f1fdac5dd475e0", size = 472042, upload-time = "2025-02-15T08:05:32.039Z" },
 ]
 
 [[package]]
@@ -833,6 +848,18 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/cc/f1/7119e42aa1d3bf036ffc9478885c2e248812b7de9abea4eae89163d2929d/ruff-0.14.5-py3-none-win32.whl", hash = "sha256:c83642e6fccfb6dea8b785eb9f456800dcd6a63f362238af5fc0c83d027dd08b", size = 12925808, upload-time = "2025-11-13T19:58:42.779Z" },
     { url = "https://files.pythonhosted.org/packages/3b/9d/7c0a255d21e0912114784e4a96bf62af0618e2190cae468cd82b13625ad2/ruff-0.14.5-py3-none-win_amd64.whl", hash = "sha256:9d55d7af7166f143c94eae1db3312f9ea8f95a4defef1979ed516dbb38c27621", size = 14331546, upload-time = "2025-11-13T19:58:45.691Z" },
     { url = "https://files.pythonhosted.org/packages/e5/80/69756670caedcf3b9be597a6e12276a6cf6197076eb62aad0c608f8efce0/ruff-0.14.5-py3-none-win_arm64.whl", hash = "sha256:4b700459d4649e2594b31f20a9de33bc7c19976d4746d8d0798ad959621d64a4", size = 13433331, upload-time = "2025-11-13T19:58:48.434Z" },
+]
+
+[[package]]
+name = "s3transfer"
+version = "0.16.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "botocore" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/05/04/74127fc843314818edfa81b5540e26dd537353b123a4edc563109d8f17dd/s3transfer-0.16.0.tar.gz", hash = "sha256:8e990f13268025792229cd52fa10cb7163744bf56e719e0b9cb925ab79abf920", size = 153827, upload-time = "2025-12-01T02:30:59.114Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fc/51/727abb13f44c1fcf6d145979e1535a35794db0f6e450a0cb46aa24732fe2/s3transfer-0.16.0-py3-none-any.whl", hash = "sha256:18e25d66fed509e3868dc1572b3f427ff947dd2c56f844a5bf09481ad3f3b2fe", size = 86830, upload-time = "2025-12-01T02:30:57.729Z" },
 ]
 
 [[package]]

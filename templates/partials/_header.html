@@ -5,10 +5,10 @@
             <a href="/" class="flex items-center font-bold text-lg">
                 <span class="text-base-content">django</span><span class="text-primary">-athm</span>
             </a>
-            <div class="flex items-center gap-2 sm:gap-4">
+            <div class="flex items-center gap-2 sm:gap-3 md:gap-4">
                 <!-- GitHub badge -->
                 <a href="https://github.com/django-athm/django-athm"
-                   class="hidden sm:flex items-center gap-2 px-3 py-2 bg-base-200 border border-base-300 rounded-lg hover:bg-base-300 transition-colors text-base-content"
+                   class="flex items-center gap-2 px-3 py-2 bg-base-200 border border-base-300 rounded-lg hover:bg-base-300 transition-colors text-base-content"
                    target="_blank" rel="noopener noreferrer">
                     <!-- GitHub icon -->
                     <svg class="w-5 h-5 fill-current text-base-content" viewBox="0 0 24 24">
@@ -27,6 +27,17 @@
                             </span>
                         </div>
                     </div>
+                </a>
+                <!-- Language toggle -->
+                <a href="{{ alternate_url }}"
+                   class="badge badge-outline badge-lg gap-2 hover:badge-primary transition-colors"
+                   aria-label="Switch to {{ alternate_language_name }}"
+                   title="{{ alternate_language_name }}">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                    </svg>
+                    <span class="font-semibold">{{ current_language|upper }}</span>
                 </a>
                 <!-- Theme toggle (DaisyUI swap + theme-controller) -->
                 <label class="swap swap-rotate">

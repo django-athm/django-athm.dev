@@ -1,0 +1,353 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-09 16:46-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: athm_tip/core/views.py:15
+msgid "Payment was cancelled."
+msgstr ""
+
+#: athm_tip/core/views.py:17
+msgid "Payment session expired. Please try again."
+msgstr ""
+
+#: athm_tip/core/views.py:28
+msgid "Django ATHM Demo"
+msgstr ""
+
+#: athm_tip/core/views.py:29
+msgid "Project Support Tip"
+msgstr ""
+
+#: athm_tip/core/views.py:34
+msgid "Tip"
+msgstr ""
+
+#: athm_tip/core/views.py:35
+msgid "Support Django ATHM Development"
+msgstr ""
+
+#: athm_tip/core/views.py:55
+msgid "Missing payment reference."
+msgstr ""
+
+#: templates/base.html:5
+msgid "Django ATHM - ATH Móvil Payment Integration"
+msgstr ""
+
+#: templates/thank_you.html:4
+msgid "Payment Successful - Django ATHM"
+msgstr ""
+
+#: templates/thank_you.html:23
+msgid "Payment Not Found"
+msgstr ""
+
+#: templates/thank_you.html:24
+msgid "The payment reference is missing or invalid."
+msgstr ""
+
+#: templates/thank_you.html:25
+msgid "Return to Demo"
+msgstr ""
+
+#: templates/thank_you.html:56
+msgid "Thank you!"
+msgstr ""
+
+#: templates/thank_you.html:60
+msgid "Amount Paid"
+msgstr ""
+
+#: templates/thank_you.html:72
+msgid "Reference"
+msgstr ""
+
+#: templates/thank_you.html:77
+msgid "Ecommerce ID"
+msgstr ""
+
+#: templates/thank_you.html:82
+msgid "Date"
+msgstr ""
+
+#: templates/thank_you.html:88
+msgid "Customer"
+msgstr ""
+
+#: templates/thank_you.html:96
+msgid "Webhook Data"
+msgstr ""
+
+#: templates/thank_you.html:100
+msgid "Fee"
+msgstr ""
+
+#: templates/thank_you.html:104
+msgid "Net Amount"
+msgstr ""
+
+#: templates/thank_you.html:119
+msgid "Auto-saved"
+msgstr ""
+
+#: templates/thank_you.html:125
+msgid "Webhook"
+msgstr ""
+
+#: templates/thank_you.html:131
+msgid "Signals"
+msgstr ""
+
+#: templates/thank_you.html:147 templates/tip.html:152
+msgid "Webhook Events"
+msgstr ""
+
+#: templates/thank_you.html:166
+msgid "Processed"
+msgstr ""
+
+#: templates/thank_you.html:171
+msgid "Pending"
+msgstr ""
+
+#: templates/thank_you.html:191
+msgid "Back to Demo"
+msgstr ""
+
+#: templates/thank_you.html:194
+msgid "Docs"
+msgstr ""
+
+#: templates/thank_you.html:209
+msgid "Powered by"
+msgstr ""
+
+#: templates/tip.html:4
+msgid "Django ATHM - ATH Móvil Payment Integration for Django"
+msgstr ""
+
+#: templates/tip.html:17
+msgid "ATH Móvil payments"
+msgstr ""
+
+#: templates/tip.html:18
+msgid "for Django"
+msgstr ""
+
+#: templates/tip.html:22
+msgid ""
+"Sync ATH Móvil transactions to your Django database via webhooks. Auto-"
+"persistence, admin dashboard, and signals included."
+msgstr ""
+
+#: templates/tip.html:26
+msgid ""
+"This is an unofficial, community-maintained package. Not affiliated with ATH "
+"Móvil or Evertec."
+msgstr ""
+
+#: templates/tip.html:32 templates/tip.html:268
+msgid "Read Documentation"
+msgstr ""
+
+#: templates/tip.html:36
+msgid "View on GitHub"
+msgstr ""
+
+#: templates/tip.html:44
+msgid "Python 3.8 - 3.13"
+msgstr ""
+
+#: templates/tip.html:48
+msgid "Django 4.2+"
+msgstr ""
+
+#: templates/tip.html:52
+msgid "Latest ATH Móvil API"
+msgstr ""
+
+#: templates/tip.html:65
+msgid "Live Demo"
+msgstr ""
+
+#: templates/tip.html:66
+msgid "Optional Quick-Start"
+msgstr ""
+
+#: templates/tip.html:69
+msgid "Try it yourself"
+msgstr ""
+
+#: templates/tip.html:72
+msgid ""
+"The included template tag provides a pre-built payment button for quick "
+"integration."
+msgstr ""
+
+#: templates/tip.html:81
+msgid "Support the Project"
+msgstr ""
+
+#: templates/tip.html:85
+msgid "Tip Amount"
+msgstr ""
+
+#: templates/tip.html:89
+msgid "Supporting Django ATHM development"
+msgstr ""
+
+#: templates/tip.html:99
+msgid "Real payment"
+msgstr ""
+
+#: templates/tip.html:100
+msgid ""
+"Approving this transaction will charge $3.00 to your account. Thanks for "
+"supporting the project!"
+msgstr ""
+
+#: templates/tip.html:140
+msgid "Everything you need"
+msgstr ""
+
+#: templates/tip.html:143
+msgid ""
+"Built for Django developers who want payment integration without the "
+"complexity."
+msgstr ""
+
+#: templates/tip.html:148
+msgid "Auto-Persistence"
+msgstr ""
+
+#: templates/tip.html:148
+msgid ""
+"Transactions, items, and customers automatically saved to your database on "
+"callback."
+msgstr ""
+
+#: templates/tip.html:149
+msgid "Django Admin Ready"
+msgstr ""
+
+#: templates/tip.html:149
+msgid ""
+"Read-only dashboard with search, filtering, batch refunds, and webhook "
+"management."
+msgstr ""
+
+#: templates/tip.html:150
+msgid "Django Signals"
+msgstr ""
+
+#: templates/tip.html:150
+msgid ""
+"Four signals: <code class=\"text-xs bg-base-200 px-1 "
+"rounded\">payment_completed</code>, <code class=\"text-xs bg-base-200 px-1 "
+"rounded\">payment_cancelled</code>, <code class=\"text-xs bg-base-200 px-1 "
+"rounded\">payment_expired</code>, <code class=\"text-xs bg-base-200 px-1 "
+"rounded\">refund_sent</code>."
+msgstr ""
+
+#: templates/tip.html:151
+msgid "One-Click Refunds"
+msgstr ""
+
+#: templates/tip.html:151
+msgid ""
+"Process full or partial refunds directly from Django Admin with batch "
+"support."
+msgstr ""
+
+#: templates/tip.html:152
+msgid ""
+"Automatic webhook handling with idempotency keys. Events logged and "
+"deduplicated."
+msgstr ""
+
+#: templates/tip.html:164
+msgid "Built for Django"
+msgstr ""
+
+#: templates/tip.html:167
+msgid "Familiar patterns, zero friction."
+msgstr ""
+
+#: templates/tip.html:175
+msgid "Handle payment events with signals"
+msgstr ""
+
+#: templates/tip.html:194
+msgid "Query webhook events with automatic deduplication"
+msgstr ""
+
+#: templates/tip.html:220
+msgid "How it works"
+msgstr ""
+
+#: templates/tip.html:227
+msgid "Install"
+msgstr ""
+
+#: templates/tip.html:233
+msgid "Configure"
+msgstr ""
+
+#: templates/tip.html:234
+msgid "Add API keys to settings"
+msgstr ""
+
+#: templates/tip.html:239
+msgid "Install Webhooks"
+msgstr ""
+
+#: templates/tip.html:240
+msgid "Via Admin or manage.py"
+msgstr ""
+
+#: templates/tip.html:245
+msgid "Done"
+msgstr ""
+
+#: templates/tip.html:246
+msgid "Transactions sync automatically"
+msgstr ""
+
+#: templates/tip.html:260
+msgid "Ready to accept ATH Móvil payments in your Django app?"
+msgstr ""
+
+#: templates/tip.html:263
+msgid "Get started in minutes with our comprehensive documentation."
+msgstr ""
+
+#: templates/tip.html:272
+msgid "Star on GitHub"
+msgstr ""
+
+#: templates/tip.html:282
+msgid ""
+"This project is <strong>not</strong> affiliated with or endorsed by <span "
+"class=\"text-accent\">Evertec, Inc.</span> or <span class=\"text-"
+"accent\">ATH Móvil</span> in any way."
+msgstr ""
+
+#: templates/tip.html:286
+msgid "View this page's source code"
+msgstr ""

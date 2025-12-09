@@ -1,15 +1,10 @@
 from django.contrib import messages
-from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
-from django_athm.models import ATHM_Transaction
-from django_athm.views import default_callback
+from django.utils.translation import get_language
+from django.utils.translation import gettext_lazy as _
 
-
-def demo_page(request):
-    """Django ATHM demo showcase page."""
-    return render(request, "demo.html")
+from django_athm.models import Payment, WebhookEvent
 
 
 def tip_page(request):
@@ -17,67 +12,60 @@ def tip_page(request):
     # Handle status query params for toast messages
     status = request.GET.get("status")
     if status == "cancelled":
-        messages.warning(request, "Payment was cancelled.")
+        messages.warning(request, _("Payment was cancelled."))
     elif status == "expired":
-        messages.error(request, "Payment session expired. Please try again.")
+        messages.error(request, _("Payment session expired. Please try again."))
+
+    # Get current language for ATH Móvil button
+    current_lang = get_language()
+    athm_lang = "es" if current_lang == "es" else "en"
 
     context = {
         "ATHM_CONFIG": {
             "total": 3.00,
             "subtotal": 3.00,
             "tax": 0.00,
-            "metadata_1": "Django ATHM Demo",
-            "metadata_2": "Project Support Tip",
+            "metadata_1": str(_("Django ATHM Demo")),
+            "metadata_2": str(_("Project Support Tip")),
+            "theme": "btn",
+            "lang": athm_lang,
             "items": [
                 {
-                    "name": "Tip",
-                    "description": "Support Django ATHM Development",
+                    "name": str(_("Tip")),
+                    "description": str(_("Support Django ATHM Development")),
                     "quantity": "1",
                     "price": "3.00",
                     "tax": "0.00",
                     "metadata": "demo-tip",
                 }
             ],
+            "success_url": request.build_absolute_uri(reverse("core:thank_you")),
+            "failure_url": request.build_absolute_uri(
+                reverse("core:tip") + "?status=cancelled"
+            ),
         }
     }
     return render(request, "tip.html", context)
 
 
-@csrf_exempt
-def athm_callback(request):
-    """Custom callback that returns redirect info after processing."""
-    # Call original callback for persistence + signals
-    response = default_callback(request)
+def thank_you(request):
+    """Display transaction details after successful payment."""
+    reference_number = request.GET.get("reference_number")
+    if not reference_number:
+        messages.error(request, _("Missing payment reference."))
+        return render(
+            request, "thank_you.html", {"payment": None, "webhook_events": []}
+        )
 
-    # Extract status from request
-    ecommerce_status = request.POST.get("ecommerceStatus", "")
-    reference_number = request.POST.get("referenceNumber", "")
+    payment = get_object_or_404(Payment, reference_number=reference_number)
 
-    # For intermediate statuses (OPEN, CONFIRM), return original response
-    if ecommerce_status in ("OPEN", "CONFIRM"):
-        return response
-
-    # Determine redirect based on status
-    if ecommerce_status == "COMPLETED":
-        redirect_url = reverse("core:thank_you", args=[reference_number])
-        status = "completed"
-    elif ecommerce_status == "EXPIRED":
-        redirect_url = f"{reverse('core:tip')}?status=expired"
-        status = "expired"
-    else:  # CANCEL, CANCELLED
-        redirect_url = f"{reverse('core:tip')}?status=cancelled"
-        status = "cancelled"
-
-    return JsonResponse(
-        {
-            "status": status,
-            "reference_number": reference_number,
-            "redirect_url": redirect_url,
-        }
+    # Get webhook events for this payment
+    webhook_events = WebhookEvent.objects.filter(transaction=payment).order_by(
+        "-created"
     )
 
-
-def thank_you(request, reference_number):
-    """Display transaction details after successful payment."""
-    transaction = get_object_or_404(ATHM_Transaction, reference_number=reference_number)
-    return render(request, "thank_you.html", {"transaction": transaction})
+    context = {
+        "payment": payment,
+        "webhook_events": webhook_events,
+    }
+    return render(request, "thank_you.html", context)

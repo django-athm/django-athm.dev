@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static django_athm %}
+{% load static django_athm i18n %}
 
-{% block title %}Django ATHM - ATH Móvil Payment Integration for Django{% endblock %}
+{% block title %}{% trans "Django ATHM - ATH Móvil Payment Integration for Django" %}{% endblock %}
 
 {% block content %}
     <!-- Hero Section -->
@@ -14,27 +14,26 @@
                 </div>
 
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-                    ATH Móvil payments<br>
-                    for Django
+                    {% trans "ATH Móvil payments" %}<br>
+                    {% trans "for Django" %}
                 </h1>
 
                 <p class="text-xl md:text-2xl text-base-content/70 mb-4 max-w-2xl">
-                    Accept mobile payments in Puerto Rico with a single template tag.
-                    Auto-persistence, admin integration, and signals included.
+                    {% trans "Sync ATH Móvil transactions to your Django database via webhooks. Auto-persistence, admin dashboard, and signals included." %}
                 </p>
 
                 <p class="text-sm text-base-content/50 mb-10">
-                    This is an unofficial, community-maintained package. Not affiliated with ATH Móvil or Evertec.
+                    {% trans "This is an unofficial, community-maintained package. Not affiliated with ATH Móvil or Evertec." %}
                 </p>
 
                 <div class="flex flex-wrap gap-4 mb-12">
-                    <a href="https://django-athm.github.io/django-athm/" target="_blank"
+                    <a href="https://django-athm.readthedocs.io" target="_blank"
                        class="btn btn-primary btn-lg shadow-lg hover:shadow-xl transition-shadow">
-                        Read Documentation
+                        {% trans "Read Documentation" %}
                     </a>
                     <a href="https://github.com/django-athm/django-athm" target="_blank"
                        class="btn btn-secondary btn-lg">
-                        View on GitHub
+                        {% trans "View on GitHub" %}
                     </a>
                 </div>
 
@@ -42,15 +41,15 @@
                 <div class="flex flex-wrap gap-8 text-sm">
                     <div class="flex items-center gap-2">
                         <div class="w-2 h-2 bg-success rounded-full"></div>
-                        <span class="text-base-content/60">Python 3.8 - 3.13</span>
+                        <span class="text-base-content/60">{% trans "Python 3.8 - 3.13" %}</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <div class="w-2 h-2 bg-success rounded-full"></div>
-                        <span class="text-base-content/60">Django 4.2+</span>
+                        <span class="text-base-content/60">{% trans "Django 4.2+" %}</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <div class="w-2 h-2 bg-success rounded-full"></div>
-                        <span class="text-base-content/60">Latest ATH Móvil API</span>
+                        <span class="text-base-content/60">{% trans "Latest ATH Móvil API" %}</span>
                     </div>
                 </div>
             </div>
@@ -62,12 +61,14 @@
         <div class="container mx-auto px-6">
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-12">
-                    <div class="badge badge-outline badge-lg mb-4">Live Demo</div>
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div class="badge badge-ghost badge-lg">{% trans "Optional Quick-Start" %}</div>
+                    </div>
                     <h2 class="text-4xl md:text-5xl font-bold mb-4">
-                        Try it yourself
+                        {% trans "Try it yourself" %}
                     </h2>
-                    <p class="text-lg text-base-content/60 max-w-xl mx-auto">
-                        This button is connected to a real ATH Móvil Business account.
+                    <p class="text-lg text-base-content/60 max-w-2xl mx-auto">
+                        {% trans "The included template tag provides a pre-built payment button for quick integration." %}
                     </p>
                 </div>
 
@@ -76,27 +77,27 @@
                     <div class="lg:col-span-2">
                         <div class="card bg-base-100 shadow-2xl">
                             <div class="card-body p-8">
-                                <h3 class="card-title text-2xl mb-6">Support the Project</h3>
+                                <h3 class="card-title text-2xl mb-6">{% trans "Support the Project" %}</h3>
 
                                 <div class="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-2xl mb-6">
                                     <div class="flex justify-between items-center mb-2">
-                                        <span class="font-medium text-base-content/70">Tip Amount</span>
+                                        <span class="font-medium text-base-content/70">{% trans "Tip Amount" %}</span>
                                         <span class="text-3xl font-bold text-primary">$3.00</span>
                                     </div>
                                     <p class="text-sm text-base-content/50">
-                                        Supporting Django ATHM development
+                                        {% trans "Supporting Django ATHM development" %}
                                     </p>
                                 </div>
 
-                                <div id="athm-button-wrapper">
+                                <div id="athm-button-wrapper" class="flex justify-center">
                                     {% include 'partials/athm_button.html' %}
                                 </div>
 
-                                <div class="alert alert-warning mt-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                                    <div class="text-sm">
-                                        <strong>Real payment:</strong> If you approve the transaction on your phone, this will charge your account $3.00 and send it to the developer (thanks!)
-                                    </div>
+                                <div class="mt-4 px-4 py-3 rounded-xl border border-base-300 bg-base-200/50">
+                                    <p class="text-xs text-base-content/60 leading-relaxed">
+                                        <span class="font-semibold text-base-content/80">{% trans "Real payment" %}</span> &#8212;
+                                        {% trans "Approving this transaction will charge $3.00 to your account. Thanks for supporting the project!" %}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -106,22 +107,30 @@
                     <div class="lg:col-span-3">
                         <div class="mockup-code bg-neutral text-neutral-content shadow-2xl">
                             <pre data-prefix="1" class="text-neutral-content/60"><code>{% verbatim %}# views.py{% endverbatim %}</code></pre>
-                            <pre data-prefix="2"><code>def checkout(request):</code></pre>
+                            <pre data-prefix="2"><code>def tip_page(request):</code></pre>
                             <pre data-prefix="3"><code>    context = {</code></pre>
                             <pre data-prefix="4"><code>        "ATHM_CONFIG": {</code></pre>
                             <pre data-prefix="5" class="text-success"><code>            "total": 3.00,</code></pre>
-                            <pre data-prefix="6"><code>            "items": [{</code></pre>
-                            <pre data-prefix="7"><code>                "name": "Tip",</code></pre>
-                            <pre data-prefix="8"><code>                "price": "3.00",</code></pre>
-                            <pre data-prefix="9"><code>                "quantity": "1"</code></pre>
-                            <pre data-prefix="10"><code>            }]</code></pre>
-                            <pre data-prefix="11"><code>        }</code></pre>
-                            <pre data-prefix="12"><code>    }</code></pre>
-                            <pre data-prefix="13"><code>    return render(request, "checkout.html", context)</code></pre>
-                            <pre data-prefix="14" class="text-neutral-content/40"><code></code></pre>
-                            <pre data-prefix="15" class="text-neutral-content/60"><code>{% verbatim %}{# checkout.html #}{% endverbatim %}</code></pre>
-                            <pre data-prefix="16"><code>{% verbatim %}{% load django_athm %}{% endverbatim %}</code></pre>
-                            <pre data-prefix="17" class="text-warning"><code>{% verbatim %}{% athm_button ATHM_CONFIG %}{% endverbatim %}</code></pre>
+                            <pre data-prefix="6"><code>            "subtotal": 3.00,</code></pre>
+                            <pre data-prefix="7"><code>            "tax": 0.00,</code></pre>
+                            <pre data-prefix="8"><code>            "metadata_1": "Django ATHM Demo",</code></pre>
+                            <pre data-prefix="9"><code>            "theme": "btn",</code></pre>
+                            <pre data-prefix="10"><code>            "items": [{</code></pre>
+                            <pre data-prefix="11"><code>                "name": "Tip",</code></pre>
+                            <pre data-prefix="12"><code>                "description": "Support Development",</code></pre>
+                            <pre data-prefix="13"><code>                "price": "3.00",</code></pre>
+                            <pre data-prefix="14"><code>                "quantity": "1",</code></pre>
+                            <pre data-prefix="15"><code>                "tax": "0.00"</code></pre>
+                            <pre data-prefix="16"><code>            }],</code></pre>
+                            <pre data-prefix="17"><code>            "success_url": reverse("thank_you"),</code></pre>
+                            <pre data-prefix="18"><code>            "failure_url": reverse("tip")</code></pre>
+                            <pre data-prefix="19"><code>        }</code></pre>
+                            <pre data-prefix="20"><code>    }</code></pre>
+                            <pre data-prefix="21"><code>    return render(request, "tip.html", context)</code></pre>
+                            <pre data-prefix="22" class="text-neutral-content/40"><code></code></pre>
+                            <pre data-prefix="23" class="text-neutral-content/60"><code>{% verbatim %}{# tip.html #}{% endverbatim %}</code></pre>
+                            <pre data-prefix="24"><code>{% verbatim %}{% load django_athm %}{% endverbatim %}</code></pre>
+                            <pre data-prefix="25" class="text-warning"><code>{% verbatim %}{% athm_button ATHM_CONFIG %}{% endverbatim %}</code></pre>
                         </div>
                     </div>
                 </div>
@@ -135,104 +144,19 @@
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-bold mb-4">
-                        Everything you need
+                        {% trans "Everything you need" %}
                     </h2>
                     <p class="text-lg text-base-content/60 max-w-2xl mx-auto">
-                        Built for Django developers who want payment integration without the complexity.
+                        {% trans "Built for Django developers who want payment integration without the complexity." %}
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Feature 1: Auto Persistence -->
-                    <div class="card bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
-                        <div class="card-body">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
-                                </svg>
-                            </div>
-                            <h3 class="card-title text-lg">Auto-Persistence</h3>
-                            <p class="text-base-content/60">
-                                Transactions, items, and customers automatically saved to your database on callback.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Feature 2: Django Admin -->
-                    <div class="card bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
-                        <div class="card-body">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="card-title text-lg">Django Admin Ready</h3>
-                            <p class="text-base-content/60">
-                                Full admin interface with search, filtering, date hierarchy, and inline item editing.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Feature 3: Signals -->
-                    <div class="card bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
-                        <div class="card-body">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="card-title text-lg">Django Signals</h3>
-                            <p class="text-base-content/60">
-                                <code class="text-xs bg-base-200 px-1 rounded">athm_completed_response</code> and <code class="text-xs bg-base-200 px-1 rounded">athm_cancelled_response</code> for event handling.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Feature 4: Refunds -->
-                    <div class="card bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
-                        <div class="card-body">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
-                                </svg>
-                            </div>
-                            <h3 class="card-title text-lg">One-Click Refunds</h3>
-                            <p class="text-base-content/60">
-                                Process full or partial refunds directly from Django Admin with batch support.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Feature 5: Sync Command -->
-                    <div class="card bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
-                        <div class="card-body">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                                </svg>
-                            </div>
-                            <h3 class="card-title text-lg">Transaction Sync</h3>
-                            <p class="text-base-content/60">
-                                <code class="text-xs bg-base-200 px-1 rounded">manage.py athm_sync</code> imports existing transactions from ATH Móvil.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Feature 6: QuerySet Helpers -->
-                    <div class="card bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
-                        <div class="card-body">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                                </svg>
-                            </div>
-                            <h3 class="card-title text-lg">Query Helpers</h3>
-                            <p class="text-base-content/60">
-                                <code class="text-xs bg-base-200 px-1 rounded">.completed()</code>, <code class="text-xs bg-base-200 px-1 rounded">.refundable()</code>, <code class="text-xs bg-base-200 px-1 rounded">.by_date_range()</code> and more.
-                            </p>
-                        </div>
-                    </div>
+                    {% include 'partials/_feature_card.html' with title=_("Auto-Persistence") description=_("Transactions, items, and customers automatically saved to your database on callback.") icon_path="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" %}
+                    {% include 'partials/_feature_card.html' with title=_("Django Admin Ready") description=_("Read-only dashboard with search, filtering, batch refunds, and webhook management.") icon_path="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" %}
+                    {% include 'partials/_feature_card.html' with title=_("Django Signals") description=_('Four signals: <code class="text-xs bg-base-200 px-1 rounded">payment_completed</code>, <code class="text-xs bg-base-200 px-1 rounded">payment_cancelled</code>, <code class="text-xs bg-base-200 px-1 rounded">payment_expired</code>, <code class="text-xs bg-base-200 px-1 rounded">refund_sent</code>.') icon_path="M13 10V3L4 14h7v7l9-11h-7z" %}
+                    {% include 'partials/_feature_card.html' with title=_("One-Click Refunds") description=_("Process full or partial refunds directly from Django Admin with batch support.") icon_path="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" %}
+                    {% include 'partials/_feature_card.html' with title=_("Webhook Events") description=_("Automatic webhook handling with idempotency keys. Events logged and deduplicated.") icon_path="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" %}
                 </div>
             </div>
         </div>
@@ -244,10 +168,10 @@
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl md:text-5xl font-bold mb-4">
-                        Built for Django
+                        {% trans "Built for Django" %}
                     </h2>
                     <p class="text-lg text-base-content/60">
-                        Familiar patterns, zero friction.
+                        {% trans "Familiar patterns, zero friction." %}
                     </p>
                 </div>
 
@@ -255,38 +179,38 @@
                     <!-- Signal Example -->
                     <div class="card bg-base-100 shadow-xl overflow-hidden">
                         <div class="p-4 bg-base-300/50 border-b border-base-300">
-                            <span class="font-semibold">Handle payment events with signals</span>
+                            <span class="font-semibold">{% trans "Handle payment events with signals" %}</span>
                         </div>
                         <div class="mockup-code rounded-none bg-neutral">
                             <pre data-prefix="1" class="text-neutral-content/50"><code># signals.py</code></pre>
                             <pre data-prefix="2"><code>from django.dispatch import receiver</code></pre>
-                            <pre data-prefix="3"><code>from django_athm.signals import athm_completed_response</code></pre>
+                            <pre data-prefix="3"><code>from django_athm.signals import payment_completed</code></pre>
                             <pre data-prefix="4"><code></code></pre>
-                            <pre data-prefix="5"><code>@receiver(athm_completed_response)</code></pre>
-                            <pre data-prefix="6"><code>def handle_payment(sender, transaction, **kwargs):</code></pre>
+                            <pre data-prefix="5"><code>@receiver(payment_completed)</code></pre>
+                            <pre data-prefix="6"><code>def handle_payment(sender, payment, **kwargs):</code></pre>
                             <pre data-prefix="7" class="text-success"><code>    # Send confirmation email</code></pre>
                             <pre data-prefix="8" class="text-success"><code>    # Update inventory</code></pre>
                             <pre data-prefix="9" class="text-success"><code>    # Trigger fulfillment</code></pre>
-                            <pre data-prefix="10"><code>    send_receipt(transaction.client.email, transaction)</code></pre>
+                            <pre data-prefix="10"><code>    send_receipt(payment.customer_email, payment)</code></pre>
                         </div>
                     </div>
 
-                    <!-- QuerySet Example -->
+                    <!-- Webhook Events Example -->
                     <div class="card bg-base-100 shadow-xl overflow-hidden">
                         <div class="p-4 bg-base-300/50 border-b border-base-300">
-                            <span class="font-semibold">Query transactions with built-in helpers</span>
+                            <span class="font-semibold">{% trans "Query webhook events with automatic deduplication" %}</span>
                         </div>
                         <div class="mockup-code rounded-none bg-neutral">
-                            <pre data-prefix="1"><code>from django_athm.models import ATHM_Transaction</code></pre>
+                            <pre data-prefix="1"><code>from django_athm.models import WebhookEvent</code></pre>
                             <pre data-prefix="2"><code></code></pre>
-                            <pre data-prefix="3" class="text-neutral-content/50"><code># Get all completed transactions</code></pre>
-                            <pre data-prefix="4"><code>ATHM_Transaction.objects.completed()</code></pre>
-                            <pre data-prefix="5"><code></code></pre>
-                            <pre data-prefix="6" class="text-neutral-content/50"><code># Find refundable transactions in date range</code></pre>
-                            <pre data-prefix="7"><code>ATHM_Transaction.objects.refundable().by_date_range(</code></pre>
-                            <pre data-prefix="8"><code>    start=date(2024, 1, 1),</code></pre>
-                            <pre data-prefix="9"><code>    end=date(2024, 12, 31)</code></pre>
-                            <pre data-prefix="10"><code>)</code></pre>
+                            <pre data-prefix="3" class="text-neutral-content/50"><code># Get all processed webhook events</code></pre>
+                            <pre data-prefix="4"><code>WebhookEvent.objects.filter(</code></pre>
+                            <pre data-prefix="5" class="text-success"><code>    event_type="ecommerce_completed",</code></pre>
+                            <pre data-prefix="6" class="text-success"><code>    processed=True</code></pre>
+                            <pre data-prefix="7"><code>)</code></pre>
+                            <pre data-prefix="8"><code></code></pre>
+                            <pre data-prefix="9" class="text-neutral-content/50"><code># Events: ecommerce_completed, ecommerce_cancelled,</code></pre>
+                            <pre data-prefix="10" class="text-neutral-content/50"><code># ecommerce_expired, payment, refund</code></pre>
                         </div>
                     </div>
                 </div>
@@ -300,33 +224,33 @@
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-bold mb-4">
-                        How it works
+                        {% trans "How it works" %}
                     </h2>
                 </div>
 
                 <ul class="steps steps-vertical lg:steps-horizontal w-full">
                     <li class="step step-primary" data-content="1">
                         <div class="text-left lg:text-center py-4">
-                            <h3 class="font-bold">Install</h3>
+                            <h3 class="font-bold">{% trans "Install" %}</h3>
                             <p class="text-sm text-base-content/60">pip install django-athm</p>
                         </div>
                     </li>
                     <li class="step step-primary" data-content="2">
                         <div class="text-left lg:text-center py-4">
-                            <h3 class="font-bold">Configure</h3>
-                            <p class="text-sm text-base-content/60">Add keys to settings</p>
+                            <h3 class="font-bold">{% trans "Configure" %}</h3>
+                            <p class="text-sm text-base-content/60">{% trans "Add API keys to settings" %}</p>
                         </div>
                     </li>
                     <li class="step step-primary" data-content="3">
                         <div class="text-left lg:text-center py-4">
-                            <h3 class="font-bold">Add Button</h3>
-                            <p class="text-sm text-base-content/60">{% verbatim %}{% athm_button %}{% endverbatim %}</p>
+                            <h3 class="font-bold">{% trans "Install Webhooks" %}</h3>
+                            <p class="text-sm text-base-content/60">{% trans "Via Admin or manage.py" %}</p>
                         </div>
                     </li>
                     <li class="step step-primary" data-content="4">
                         <div class="text-left lg:text-center py-4">
-                            <h3 class="font-bold">Done</h3>
-                            <p class="text-sm text-base-content/60">Manage in Admin</p>
+                            <h3 class="font-bold">{% trans "Done" %}</h3>
+                            <p class="text-sm text-base-content/60">{% trans "Transactions sync automatically" %}</p>
                         </div>
                     </li>
                 </ul>
@@ -340,19 +264,19 @@
     <footer class="py-24 bg-base-300">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-base-content">
-                Ready to accept ATH Móvil payments?
+                {% trans "Ready to accept ATH Móvil payments in your Django app?" %}
             </h2>
             <p class="text-lg text-base-content/80 mb-8 max-w-xl mx-auto">
-                Get started in minutes with our comprehensive documentation.
+                {% trans "Get started in minutes with our comprehensive documentation." %}
             </p>
             <div class="flex gap-4 justify-center flex-wrap">
-                <a href="https://django-athm.github.io/django-athm/" target="_blank"
+                <a href="https://django-athm.readthedocs.io" target="_blank"
                    class="btn btn-lg btn-primary">
-                    Read Documentation
+                    {% trans "Read Documentation" %}
                 </a>
                 <a href="https://github.com/django-athm/django-athm" target="_blank"
                    class="btn btn-lg btn-secondary">
-                    Star on GitHub
+                    {% trans "Star on GitHub" %}
                 </a>
             </div>
         </div>
@@ -362,9 +286,11 @@
     <div class="py-8 bg-base">
         <div class="container mx-auto px-6 text-center space-y-6">
             <p class="text-sm text-base-content/50 max-w-3xl mx-auto">
+                {% blocktrans trimmed %}
                 This project is <strong>not</strong> affiliated with or endorsed by <span class="text-accent">Evertec, Inc.</span> or <span class="text-accent">ATH Móvil</span> in any way.
+                {% endblocktrans %}
             </p>
-            <a href="https://github.com/django-athm/demo" target="_blank" class="btn btn-accent">View this page's source code</a>
+            <a href="https://github.com/django-athm/demo" target="_blank" class="btn btn-accent">{% trans "View this page's source code" %}</a>
         </div>
     </div>
 

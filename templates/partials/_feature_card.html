@@ -1,0 +1,11 @@
+<div class="card bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+    <div class="card-body">
+        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ icon_path }}"></path>
+            </svg>
+        </div>
+        <h3 class="card-title text-lg">{{ title }}</h3>
+        <p class="text-base-content/60">{{ description|safe }}</p>
+    </div>
+</div>
