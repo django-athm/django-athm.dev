@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block title %}Payment Confirmation - Django ATHM{% endblock %}
+{% block title %}{% trans "Payment Confirmed" %} - Django ATHM{% endblock %}
 
 {% block meta_robots %}
 <meta name="robots" content="noindex, nofollow">
@@ -11,210 +11,209 @@
 <meta name="description" content="Payment confirmation page for Django ATHM demo transaction.">
 {% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/animations.css' %}">
-{% endblock %}
-
 {% block content %}
-<div class="min-h-screen bg-base-200 flex items-center justify-center p-4 sm:p-6 md:p-8">
-    <div class="w-full max-w-xs sm:max-w-sm">
+<div class="min-h-screen bg-base-200 py-8 px-4 sm:py-12 sm:px-6 lg:py-16">
+    <div class="max-w-2xl mx-auto space-y-6">
 
         {% if not payment %}
         <!-- Error State -->
-        <div class="card bg-base-100 shadow-2xl">
-            <div class="card-body p-8 text-center">
-                <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-error/10 flex items-center justify-center">
-                    <svg class="w-10 h-10 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                    </svg>
-                </div>
-                <h1 class="text-xl font-bold mb-2">{% trans "Payment Not Found" %}</h1>
-                <p class="text-base-content/50 text-sm mb-6">{% trans "The payment reference is missing or invalid." %}</p>
-                <a href="{% url 'core:tip' %}" class="btn btn-primary btn-block">{% trans "Return to Demo" %}</a>
+        <div role="alert" class="alert alert-warning">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            <div>
+                <h3 class="font-bold">{% trans "Payment Not Found" %}</h3>
+                <p class="text-sm">{% trans "The payment reference is missing or invalid." %}</p>
+            </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body items-center text-center">
+                <p class="text-base-content/60 mb-4">{% trans "If you just completed a payment, please wait a moment and refresh the page." %}</p>
+                <a href="{% url 'core:tip' %}" class="btn btn-primary">{% trans "Return to Demo" %}</a>
             </div>
         </div>
 
         {% else %}
-        <!-- Success Receipt -->
-        <div class="card bg-base-100 shadow-2xl overflow-hidden">
-            <!-- Top decorative edge -->
-            <div class="receipt-edge h-1"></div>
+        <!-- Success State -->
 
-            <div class="card-body p-0">
-                <!-- Success Header -->
-                <div class="relative px-6 sm:px-8 pt-8 sm:pt-10 pb-8 text-center receipt-texture bg-base-100">
-                    <!-- Checkmark with ring -->
-                    <div class="relative inline-block mb-6">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-success/10 flex items-center justify-center">
-                            <div class="checkmark-container">
-                                <svg class="w-12 h-12" viewBox="0 0 52 52">
-                                    <circle class="checkmark-circle" cx="26" cy="26" r="24" fill="none"
-                                            stroke="currentColor" stroke-width="2.5"
-                                            style="color: var(--color-success)"/>
-                                    <path class="checkmark-check" fill="none"
-                                          stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
-                                          d="M15 27l7 7 14-14"
-                                          style="color: var(--color-success)"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Thank you -->
-                    <h1 class="text-xl sm:text-2xl font-bold mb-1 amount-reveal">{% trans "Thank you!" %}</h1>
-
-                    <!-- Amount - THE HERO -->
-                    <div class="amount-reveal" style="animation-delay: 0.9s;">
-                        <p class="text-xs font-semibold uppercase tracking-widest text-base-content/40 mb-2">{% trans "Amount Paid" %}</p>
-                        <p class="text-5xl sm:text-6xl font-extrabold tracking-tight text-primary leading-none">${{ payment.total|floatformat:2 }}</p>
-                    </div>
-                </div>
-
-                <!-- Dashed separator -->
-                <div class="receipt-edge h-0.5 mx-6"></div>
-
-                <!-- Payment Details -->
-                <div class="px-8 py-6">
-                    <div class="space-y-4">
-                        <div class="detail-row">
-                            <p class="text-xs uppercase tracking-wider text-base-content/40 font-medium mb-1">{% trans "Reference" %}</p>
-                            <p class="font-mono text-xs font-semibold">{{ payment.reference_number }}</p>
-                        </div>
-
-                        <div class="detail-row">
-                            <p class="text-xs uppercase tracking-wider text-base-content/40 font-medium mb-1">{% trans "Ecommerce ID" %}</p>
-                            <p class="font-mono text-xs font-semibold">{{ payment.ecommerce_id }}</p>
-                        </div>
-
-                        <div class="detail-row">
-                            <p class="text-xs uppercase tracking-wider text-base-content/40 font-medium mb-1">{% trans "Date" %}</p>
-                            <p class="text-sm font-medium">{{ payment.transaction_date|default:payment.created|date:"F j, Y" }} at {{ payment.transaction_date|default:payment.created|date:"g:i A" }}</p>
-                        </div>
-
-                        {% if payment.customer_name %}
-                        <div class="detail-row">
-                            <p class="text-xs uppercase tracking-wider text-base-content/40 font-medium mb-1">{% trans "Customer" %}</p>
-                            <p class="text-sm font-medium">{{ payment.customer_name }}{% if payment.customer_phone %} ({{ payment.customer_phone }}){% endif %}</p>
-                        </div>
-                        {% endif %}
-
-                        {% if payment.fee is not None %}
-                        <!-- Webhook-enriched data -->
-                        <div class="receipt-edge h-0.5 my-4"></div>
-                        <p class="text-xs uppercase tracking-wider text-base-content/40 font-medium mb-3">{% trans "Webhook Data" %}</p>
-
-                        <div class="grid grid-cols-2 gap-3 sm:gap-4">
-                            <div class="detail-row">
-                                <p class="text-xs uppercase tracking-wider text-base-content/40 font-medium mb-1">{% trans "Fee" %}</p>
-                                <p class="text-sm font-medium text-error">${{ payment.fee|floatformat:2 }}</p>
-                            </div>
-                            <div class="detail-row">
-                                <p class="text-xs uppercase tracking-wider text-base-content/40 font-medium mb-1">{% trans "Net Amount" %}</p>
-                                <p class="text-sm font-medium text-success">${{ payment.net_amount|floatformat:2 }}</p>
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <!-- Feature Pills -->
-                <div class="px-8 pb-6">
-                    <div class="flex flex-wrap gap-2 justify-center">
-                        <div class="feature-pill badge badge-ghost gap-1.5 py-3 px-3">
-                            <svg class="w-3.5 h-3.5 text-success" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-xs font-medium">{% trans "Auto-saved" %}</span>
-                        </div>
-                        <div class="feature-pill badge badge-ghost gap-1.5 py-3 px-3">
-                            <svg class="w-3.5 h-3.5 text-success" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-xs font-medium">{% trans "Webhook" %}</span>
-                        </div>
-                        <div class="feature-pill badge badge-ghost gap-1.5 py-3 px-3">
-                            <svg class="w-3.5 h-3.5 text-success" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-xs font-medium">{% trans "Signals" %}</span>
-                        </div>
-                    </div>
-                </div>
-
-                {% if webhook_events %}
-                <!-- Webhook Event Log -->
-                <div class="px-8 pb-6">
-                    <div class="receipt-edge h-0.5 mb-4"></div>
-                    <div class="collapse collapse-arrow bg-base-200/50 rounded-lg">
-                        <input type="checkbox" />
-                        <div class="collapse-title py-3 min-h-0">
-                            <div class="flex items-center gap-2">
-                                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
-                                <span class="text-xs font-semibold uppercase tracking-wider">{% trans "Webhook Events" %}</span>
-                                <span class="badge badge-primary badge-xs">{{ webhook_events|length }}</span>
-                            </div>
-                        </div>
-                        <div class="collapse-content px-4">
-                            <div class="space-y-3 pt-2">
-                                {% for event in webhook_events %}
-                                <div class="bg-base-100 rounded-lg p-3 border border-base-300">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <span class="badge badge-sm {% if event.event_type == 'ecommerce_completed' %}badge-success{% elif event.event_type == 'ecommerce_cancelled' %}badge-error{% elif event.event_type == 'ecommerce_expired' %}badge-warning{% else %}badge-ghost{% endif %}">
-                                            {{ event.get_event_type_display }}
-                                        </span>
-                                        <span class="text-xs text-base-content/50">{{ event.created|date:"g:i:s A" }}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 text-xs text-base-content/60">
-                                        {% if event.processed %}
-                                        <svg class="w-3.5 h-3.5 text-success" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                        </svg>
-                                        <span>{% trans "Processed" %}</span>
-                                        {% else %}
-                                        <svg class="w-3.5 h-3.5 text-warning" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                                        </svg>
-                                        <span>{% trans "Pending" %}</span>
-                                        {% endif %}
-                                        <span class="text-base-content/30">|</span>
-                                        <span class="font-mono">{{ event.remote_ip }}</span>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-
-                <!-- Actions -->
-                <div class="actions-container px-8 pb-8">
-                    <div class="flex gap-3">
-                        <a href="{% url 'core:tip' %}" class="btn btn-sm sm:btn-md btn-primary flex-1 gap-1.5 sm:gap-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                            </svg>
-                            {% trans "Back to Demo" %}
-                        </a>
-                        <a href="https://django-athm.readthedocs.io" target="_blank" class="btn btn-sm sm:btn-md btn-ghost gap-1.5 sm:gap-2">
-                            {% trans "Docs" %}
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+        <!-- Success Alert -->
+        <div role="alert" class="alert alert-success">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div>
+                <h3 class="font-bold">{% trans "Payment Completed" %}</h3>
+                <p class="text-sm">{% trans "Your payment was approved by ATH Movil." %}</p>
             </div>
-
-            <!-- Bottom decorative edge -->
-            <div class="receipt-edge h-1"></div>
+            <div class="badge badge-success badge-outline">{{ payment.status }}</div>
         </div>
 
-        <!-- Subtle branding -->
-        <p class="text-center text-xs text-base-content/30 mt-6 font-medium tracking-wide">
-            {% trans "Powered by" %} <a href="https://django-athm.readthedocs.io" class="hover:text-primary transition-colors">django-athm</a>
+        <!-- Amount Stats -->
+        <div class="stats stats-vertical sm:stats-horizontal shadow w-full bg-base-100">
+            <div class="stat">
+                <div class="stat-title">{% trans "Total Paid" %}</div>
+                <div class="stat-value text-primary">${{ payment.total|floatformat:2 }}</div>
+                <div class="stat-desc">{% trans "Amount charged" %}</div>
+            </div>
+
+            {% if webhook_events %}
+            <div class="stat">
+                <div class="stat-title">{% trans "Processing Fee" %}</div>
+                <div class="stat-value text-error text-2xl">${{ payment.fee|floatformat:2 }}</div>
+                <div class="stat-desc">{% trans "ATH Movil fee" %}</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-title">{% trans "Net Amount" %}</div>
+                <div class="stat-value text-success text-2xl">${{ payment.net_amount|floatformat:2 }}</div>
+                <div class="stat-desc">{% trans "After fees" %}</div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Transaction Details Card -->
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title text-lg">{% trans "Transaction Details" %}</h2>
+                <div class="divider my-2"></div>
+
+                <div class="overflow-x-auto">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="font-medium text-base-content/60 w-1/3">{% trans "Reference" %}</td>
+                                <td class="font-mono text-sm">{{ payment.reference_number|default:"-" }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-base-content/60">{% trans "Ecommerce ID" %}</td>
+                                <td class="font-mono text-xs break-all">{{ payment.ecommerce_id }}</td>
+                            </tr>
+                            {% if payment.daily_transaction_id %}
+                            <tr>
+                                <td class="font-medium text-base-content/60">{% trans "Daily ID" %}</td>
+                                <td class="font-mono text-sm">{{ payment.daily_transaction_id }}</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td class="font-medium text-base-content/60">{% trans "Date" %}</td>
+                                <td>{{ payment.transaction_date|default:payment.created|date:"M j, Y" }} {% trans "at" %} {{ payment.transaction_date|default:payment.created|time:"g:i A" }}</td>
+                            </tr>
+                            {% if payment.subtotal != payment.total %}
+                            <tr>
+                                <td class="font-medium text-base-content/60">{% trans "Subtotal" %}</td>
+                                <td>${{ payment.subtotal|floatformat:2 }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium text-base-content/60">{% trans "Tax" %}</td>
+                                <td>${{ payment.tax|floatformat:2 }}</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% if payment.customer_name or payment.customer_email or payment.customer_phone %}
+                <div class="divider my-2">{% trans "Customer" %}</div>
+                <div class="overflow-x-auto">
+                    <table class="table table-sm">
+                        <tbody>
+                            {% if payment.customer_name %}
+                            <tr>
+                                <td class="font-medium text-base-content/60 w-1/3">{% trans "Name" %}</td>
+                                <td>{{ payment.customer_name }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if payment.customer_email %}
+                            <tr>
+                                <td class="font-medium text-base-content/60">{% trans "Email" %}</td>
+                                <td class="break-all">{{ payment.customer_email }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if payment.customer_phone %}
+                            <tr>
+                                <td class="font-medium text-base-content/60">{% trans "Phone" %}</td>
+                                <td>{{ payment.customer_phone }}</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- What django-athm Did -->
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title text-lg">{% trans "What django-athm Did" %}</h2>
+                <div class="divider my-2"></div>
+
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <div class="badge badge-success badge-sm mt-0.5">OK</div>
+                        <div>
+                            <p class="font-medium">{% trans "Payment initiated" %}</p>
+                            <p class="text-sm text-base-content/60">{% trans "Payment record created when you clicked the ATH Movil button" %}</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        {% if webhook_events %}
+                        <div class="badge badge-success badge-sm mt-0.5">OK</div>
+                        {% else %}
+                        <div class="badge badge-warning badge-sm mt-0.5">...</div>
+                        {% endif %}
+                        <div>
+                            <p class="font-medium">{% trans "Webhook received" %}</p>
+                            <p class="text-sm text-base-content/60">
+                                {% if webhook_events %}
+                                {% trans "Fee, net amount, and customer data enriched via webhook" %}
+                                {% else %}
+                                {% trans "Waiting for webhook (fee and customer data will appear)" %}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        {% if webhook_events %}
+                        <div class="badge badge-success badge-sm mt-0.5">OK</div>
+                        {% else %}
+                        <div class="badge badge-ghost badge-sm mt-0.5">--</div>
+                        {% endif %}
+                        <div>
+                            <p class="font-medium">{% trans "Django signals dispatched" %}</p>
+                            <p class="text-sm text-base-content/60">
+                                {% if webhook_events %}
+                                <code class="text-xs bg-base-200 px-1 rounded">payment_completed</code>
+                                {% trans "signal sent for custom handlers" %}
+                                {% else %}
+                                {% trans "Signals fire after webhook processes" %}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-3">
+            <a href="{% url 'core:tip' %}" class="btn btn-primary flex-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                {% trans "Back to Demo" %}
+            </a>
+            <a href="https://django-athm.readthedocs.io" target="_blank" class="btn btn-outline flex-1">
+                {% trans "Documentation" %}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Branding -->
+        <p class="text-center text-sm text-base-content/40">
+            {% trans "Powered by" %} <a href="https://django-athm.readthedocs.io" class="link link-hover">django-athm</a>
         </p>
         {% endif %}
 

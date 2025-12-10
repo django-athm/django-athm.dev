@@ -32,16 +32,12 @@
 
     const starsEl = document.getElementById('gh-stars');
     const forksEl = document.getElementById('gh-forks');
-    const starsMobileEl = document.getElementById('gh-stars-mobile');
-    const forksMobileEl = document.getElementById('gh-forks-mobile');
 
     if (!starsEl || !forksEl) return;
 
     // Show loading state
     starsEl.textContent = 'Loading...';
     forksEl.textContent = 'Loading...';
-    if (starsMobileEl) starsMobileEl.textContent = 'Loading...';
-    if (forksMobileEl) forksMobileEl.textContent = 'Loading...';
 
     // Check cache first
     const cached = localStorage.getItem(CACHE_KEY);
@@ -51,12 +47,8 @@
         const timeDiff = Date.now() - parseInt(cacheTime);
         if (timeDiff < CACHE_DURATION) {
             const data = JSON.parse(cached);
-            const stars = data.stargazers_count.toLocaleString();
-            const forks = data.forks_count.toLocaleString();
-            starsEl.textContent = stars;
-            forksEl.textContent = forks;
-            if (starsMobileEl) starsMobileEl.textContent = stars;
-            if (forksMobileEl) forksMobileEl.textContent = forks;
+            starsEl.textContent = data.stargazers_count.toLocaleString();
+            forksEl.textContent = data.forks_count.toLocaleString();
             return;
         }
     }
@@ -72,12 +64,8 @@
             if (data &&
                 typeof data.stargazers_count === 'number' &&
                 typeof data.forks_count === 'number') {
-                const stars = data.stargazers_count.toLocaleString();
-                const forks = data.forks_count.toLocaleString();
-                starsEl.textContent = stars;
-                forksEl.textContent = forks;
-                if (starsMobileEl) starsMobileEl.textContent = stars;
-                if (forksMobileEl) forksMobileEl.textContent = forks;
+                starsEl.textContent = data.stargazers_count.toLocaleString();
+                forksEl.textContent = data.forks_count.toLocaleString();
 
                 // Cache the data
                 localStorage.setItem(CACHE_KEY, JSON.stringify(data));
@@ -88,8 +76,6 @@
             // Fallback on error
             starsEl.textContent = '--';
             forksEl.textContent = '--';
-            if (starsMobileEl) starsMobileEl.textContent = '--';
-            if (forksMobileEl) forksMobileEl.textContent = '--';
         });
 })();
 </script>

@@ -330,7 +330,7 @@ msgid "Transactions sync automatically"
 msgstr ""
 
 #: templates/tip.html:260
-msgid "Ready to accept ATH Móvil payments in your Django app?"
+msgid "Ready to integrate ATH Móvil payments into your Django app?"
 msgstr ""
 
 #: templates/tip.html:263
