@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block title %}{% trans "Payment Successful - Django ATHM" %}{% endblock %}
+{% block title %}Payment Confirmation - Django ATHM{% endblock %}
+
+{% block meta_robots %}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Payment confirmation page for Django ATHM demo transaction.">
+{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/animations.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-base-200 flex items-center justify-center p-4 md:p-8">
-    <div class="w-full max-w-sm">
+<div class="min-h-screen bg-base-200 flex items-center justify-center p-4 sm:p-6 md:p-8">
+    <div class="w-full max-w-xs sm:max-w-sm">
 
         {% if not payment %}
         <!-- Error State -->
@@ -34,10 +42,10 @@
 
             <div class="card-body p-0">
                 <!-- Success Header -->
-                <div class="relative px-8 pt-10 pb-8 text-center receipt-texture bg-base-100">
+                <div class="relative px-6 sm:px-8 pt-8 sm:pt-10 pb-8 text-center receipt-texture bg-base-100">
                     <!-- Checkmark with ring -->
                     <div class="relative inline-block mb-6">
-                        <div class="w-20 h-20 rounded-full bg-success/10 flex items-center justify-center">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-success/10 flex items-center justify-center">
                             <div class="checkmark-container">
                                 <svg class="w-12 h-12" viewBox="0 0 52 52">
                                     <circle class="checkmark-circle" cx="26" cy="26" r="24" fill="none"
@@ -53,12 +61,12 @@
                     </div>
 
                     <!-- Thank you -->
-                    <h1 class="text-2xl font-bold mb-1 amount-reveal">{% trans "Thank you!" %}</h1>
+                    <h1 class="text-xl sm:text-2xl font-bold mb-1 amount-reveal">{% trans "Thank you!" %}</h1>
 
                     <!-- Amount - THE HERO -->
                     <div class="amount-reveal" style="animation-delay: 0.9s;">
                         <p class="text-xs font-semibold uppercase tracking-widest text-base-content/40 mb-2">{% trans "Amount Paid" %}</p>
-                        <p class="text-6xl font-extrabold tracking-tight text-primary leading-none">${{ payment.total|floatformat:2 }}</p>
+                        <p class="text-5xl sm:text-6xl font-extrabold tracking-tight text-primary leading-none">${{ payment.total|floatformat:2 }}</p>
                     </div>
                 </div>
 
@@ -95,7 +103,7 @@
                         <div class="receipt-edge h-0.5 my-4"></div>
                         <p class="text-xs uppercase tracking-wider text-base-content/40 font-medium mb-3">{% trans "Webhook Data" %}</p>
 
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-3 sm:gap-4">
                             <div class="detail-row">
                                 <p class="text-xs uppercase tracking-wider text-base-content/40 font-medium mb-1">{% trans "Fee" %}</p>
                                 <p class="text-sm font-medium text-error">${{ payment.fee|floatformat:2 }}</p>
@@ -184,13 +192,13 @@
                 <!-- Actions -->
                 <div class="actions-container px-8 pb-8">
                     <div class="flex gap-3">
-                        <a href="{% url 'core:tip' %}" class="btn btn-primary flex-1 gap-2">
+                        <a href="{% url 'core:tip' %}" class="btn btn-sm sm:btn-md btn-primary flex-1 gap-1.5 sm:gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                             </svg>
                             {% trans "Back to Demo" %}
                         </a>
-                        <a href="https://django-athm.readthedocs.io" target="_blank" class="btn btn-ghost gap-2">
+                        <a href="https://django-athm.readthedocs.io" target="_blank" class="btn btn-sm sm:btn-md btn-ghost gap-1.5 sm:gap-2">
                             {% trans "Docs" %}
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>

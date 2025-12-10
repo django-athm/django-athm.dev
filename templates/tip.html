@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 {% load static django_athm i18n %}
 
-{% block title %}{% trans "Django ATHM - ATH Móvil Payment Integration for Django" %}{% endblock %}
+{% block title %}Django ATHM - ATH Móvil Payment Integration for Django | Webhooks, Signals & Admin Dashboard{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Accept ATH Móvil payments in your Django application. Django ATHM provides webhook integration, automatic transaction persistence, Django signals, admin dashboard, and one-click refunds. Python 3.8-3.13, Django 4.2+ compatible.">
+{% endblock %}
 
 {% block content %}
     <!-- Hero Section -->
     <div class="min-h-[85vh] flex items-center relative overflow-hidden">
-        <div class="container mx-auto px-6 py-20 relative z-10">
+        <div class="container mx-auto px-4 sm:px-6 py-20 relative z-10">
             <div class="max-w-4xl">
-                <div class="flex items-center gap-3 mb-8">
-                    <img src="{% static 'images/logo.png' %}" alt="Django ATHM" class="w-14 h-14">
-                    <div class="badge badge-primary badge-lg font-semibold"><a href="https://djangopackages.org/packages/p/django-athm/" target="_blank">Django Package</a></div>
+                <div class="flex items-center gap-2 sm:gap-3 mb-8">
+                    <img src="{% static 'images/logo.png' %}" alt="Django ATHM" class="w-12 h-12 sm:w-14 sm:h-14">
+                    <div class="badge badge-primary badge-md sm:badge-lg text-xs sm:text-sm font-semibold py-3"><a href="https://djangopackages.org/packages/p/django-athm/" target="_blank">Django Package</a></div>
                 </div>
 
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
@@ -18,15 +22,18 @@
                     {% trans "for Django" %}
                 </h1>
 
-                <p class="text-xl md:text-2xl text-base-content/70 mb-4 max-w-2xl">
+                <p class="text-lg sm:text-xl md:text-2xl text-base-content/70 mb-4 max-w-2xl">
                     {% trans "Sync ATH Móvil transactions to your Django database via webhooks. Auto-persistence, admin dashboard, and signals included." %}
                 </p>
 
                 <p class="text-sm text-base-content/50 mb-10">
-                    {% trans "This is an unofficial, community-maintained package. Not affiliated with ATH Móvil or Evertec." %}
+                    {% blocktrans trimmed %}
+                        This is an unofficial, community-maintained package. <strong>Not</strong> affiliated with  <a class="text-accent" target="_blank" href="https://evertecinc.com/">Evertec, Inc.</a> or <a class="text-accent" target="_blank" href="https://portal.athmovil.com/">ATH Móvil</a> in any way.
+                    {% endblocktrans %}
+
                 </p>
 
-                <div class="flex flex-wrap gap-4 mb-12">
+                <div class="flex flex-wrap gap-3 sm:gap-4 mb-12">
                     <a href="https://django-athm.readthedocs.io" target="_blank"
                        class="btn btn-primary btn-lg shadow-lg hover:shadow-xl transition-shadow">
                         {% trans "Read Documentation" %}
@@ -38,17 +45,17 @@
                 </div>
 
                 <!-- Quick stats -->
-                <div class="flex flex-wrap gap-8 text-sm">
-                    <div class="flex items-center gap-2">
-                        <div class="w-2 h-2 bg-success rounded-full"></div>
+                <div class="flex flex-wrap gap-4 sm:gap-6 md:gap-8 text-sm">
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                        <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-success rounded-full"></div>
                         <span class="text-base-content/60">{% trans "Python 3.8 - 3.13" %}</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-2 h-2 bg-success rounded-full"></div>
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                        <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-success rounded-full"></div>
                         <span class="text-base-content/60">{% trans "Django 4.2+" %}</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-2 h-2 bg-success rounded-full"></div>
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                        <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-success rounded-full"></div>
                         <span class="text-base-content/60">{% trans "Latest ATH Móvil API" %}</span>
                     </div>
                 </div>
@@ -62,9 +69,9 @@
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-12">
                     <div class="flex items-center justify-center gap-2 mb-4">
-                        <div class="badge badge-ghost badge-lg">{% trans "Optional Quick-Start" %}</div>
+                        <div class="badge badge-ghost badge-sm md:badge-md lg:badge-lg">{% trans "Optional Quick-Start" %}</div>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                         {% trans "Try it yourself" %}
                     </h2>
                     <p class="text-lg text-base-content/60 max-w-2xl mx-auto">
@@ -72,11 +79,11 @@
                     </p>
                 </div>
 
-                <div class="grid lg:grid-cols-5 gap-8 items-start">
+                <div class="grid lg:grid-cols-5 gap-6 md:gap-8 items-start">
                     <!-- Demo Card -->
                     <div class="lg:col-span-2">
                         <div class="card bg-base-100 shadow-2xl">
-                            <div class="card-body p-8">
+                            <div class="card-body p-6 sm:p-8">
                                 <h3 class="card-title text-2xl mb-6">{% trans "Support the Project" %}</h3>
 
                                 <div class="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-2xl mb-6">
@@ -105,32 +112,61 @@
 
                     <!-- Code Preview -->
                     <div class="lg:col-span-3">
-                        <div class="mockup-code bg-neutral text-neutral-content shadow-2xl">
-                            <pre data-prefix="1" class="text-neutral-content/60"><code>{% verbatim %}# views.py{% endverbatim %}</code></pre>
-                            <pre data-prefix="2"><code>def tip_page(request):</code></pre>
-                            <pre data-prefix="3"><code>    context = {</code></pre>
-                            <pre data-prefix="4"><code>        "ATHM_CONFIG": {</code></pre>
-                            <pre data-prefix="5" class="text-success"><code>            "total": 3.00,</code></pre>
-                            <pre data-prefix="6"><code>            "subtotal": 3.00,</code></pre>
-                            <pre data-prefix="7"><code>            "tax": 0.00,</code></pre>
-                            <pre data-prefix="8"><code>            "metadata_1": "Django ATHM Demo",</code></pre>
-                            <pre data-prefix="9"><code>            "theme": "btn",</code></pre>
-                            <pre data-prefix="10"><code>            "items": [{</code></pre>
-                            <pre data-prefix="11"><code>                "name": "Tip",</code></pre>
-                            <pre data-prefix="12"><code>                "description": "Support Development",</code></pre>
-                            <pre data-prefix="13"><code>                "price": "3.00",</code></pre>
-                            <pre data-prefix="14"><code>                "quantity": "1",</code></pre>
-                            <pre data-prefix="15"><code>                "tax": "0.00"</code></pre>
-                            <pre data-prefix="16"><code>            }],</code></pre>
-                            <pre data-prefix="17"><code>            "success_url": reverse("thank_you"),</code></pre>
-                            <pre data-prefix="18"><code>            "failure_url": reverse("tip")</code></pre>
-                            <pre data-prefix="19"><code>        }</code></pre>
-                            <pre data-prefix="20"><code>    }</code></pre>
-                            <pre data-prefix="21"><code>    return render(request, "tip.html", context)</code></pre>
-                            <pre data-prefix="22" class="text-neutral-content/40"><code></code></pre>
-                            <pre data-prefix="23" class="text-neutral-content/60"><code>{% verbatim %}{# tip.html #}{% endverbatim %}</code></pre>
-                            <pre data-prefix="24"><code>{% verbatim %}{% load django_athm %}{% endverbatim %}</code></pre>
-                            <pre data-prefix="25" class="text-warning"><code>{% verbatim %}{% athm_button ATHM_CONFIG %}{% endverbatim %}</code></pre>
+                        <!-- Mobile: Abbreviated Code Preview -->
+                        <div class="md:hidden">
+                            <div class="mockup-code bg-neutral text-neutral-content shadow-2xl text-xs">
+                                <pre data-prefix="1" class="text-neutral-content/60"><code>{% verbatim %}# views.py{% endverbatim %}</code></pre>
+                                <pre data-prefix="2"><code>def tip_page(request):</code></pre>
+                                <pre data-prefix="3"><code>    context = {</code></pre>
+                                <pre data-prefix="4"><code>        "ATHM_CONFIG": {</code></pre>
+                                <pre data-prefix="5" class="text-success"><code>            "total": 3.00,</code></pre>
+                                <pre data-prefix="6"><code>            "subtotal": 3.00,</code></pre>
+                                <pre data-prefix="7"><code>            "tax": 0.00,</code></pre>
+                                <pre data-prefix="8"><code>            # ...</code></pre>
+                                <pre data-prefix="9"><code>        }</code></pre>
+                                <pre data-prefix="10"><code>    }</code></pre>
+                                <pre data-prefix="11"><code>    return render(...)</code></pre>
+                                <pre data-prefix="12" class="text-neutral-content/40"><code></code></pre>
+                                <pre data-prefix="13" class="text-neutral-content/60"><code>{% verbatim %}{# tip.html #}{% endverbatim %}</code></pre>
+                                <pre data-prefix="14"><code>{% verbatim %}{% load django_athm %}{% endverbatim %}</code></pre>
+                                <pre data-prefix="15" class="text-warning"><code>{% verbatim %}{% athm_button ATHM_CONFIG %}{% endverbatim %}</code></pre>
+                            </div>
+                            <div class="mt-2 text-center">
+                                <a href="https://django-athm.readthedocs.io" target="_blank" class="text-xs text-base-content/50 hover:text-primary transition-colors">
+                                    {% trans "View full code in documentation" %} →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Desktop: Full Code Preview -->
+                        <div class="hidden md:block">
+                            <div class="mockup-code bg-neutral text-neutral-content shadow-2xl">
+                                <pre data-prefix="1" class="text-neutral-content/60"><code>{% verbatim %}# views.py{% endverbatim %}</code></pre>
+                                <pre data-prefix="2"><code>def tip_page(request):</code></pre>
+                                <pre data-prefix="3"><code>    context = {</code></pre>
+                                <pre data-prefix="4"><code>        "ATHM_CONFIG": {</code></pre>
+                                <pre data-prefix="5" class="text-success"><code>            "total": 3.00,</code></pre>
+                                <pre data-prefix="6"><code>            "subtotal": 3.00,</code></pre>
+                                <pre data-prefix="7"><code>            "tax": 0.00,</code></pre>
+                                <pre data-prefix="8"><code>            "metadata_1": "Django ATHM Demo",</code></pre>
+                                <pre data-prefix="9"><code>            "theme": "btn",</code></pre>
+                                <pre data-prefix="10"><code>            "items": [{</code></pre>
+                                <pre data-prefix="11"><code>                "name": "Tip",</code></pre>
+                                <pre data-prefix="12"><code>                "description": "Support Development",</code></pre>
+                                <pre data-prefix="13"><code>                "price": "3.00",</code></pre>
+                                <pre data-prefix="14"><code>                "quantity": "1",</code></pre>
+                                <pre data-prefix="15"><code>                "tax": "0.00"</code></pre>
+                                <pre data-prefix="16"><code>            }],</code></pre>
+                                <pre data-prefix="17"><code>            "success_url": reverse("thank_you"),</code></pre>
+                                <pre data-prefix="18"><code>            "failure_url": reverse("tip")</code></pre>
+                                <pre data-prefix="19"><code>        }</code></pre>
+                                <pre data-prefix="20"><code>    }</code></pre>
+                                <pre data-prefix="21"><code>    return render(request, "tip.html", context)</code></pre>
+                                <pre data-prefix="22" class="text-neutral-content/40"><code></code></pre>
+                                <pre data-prefix="23" class="text-neutral-content/60"><code>{% verbatim %}{# tip.html #}{% endverbatim %}</code></pre>
+                                <pre data-prefix="24"><code>{% verbatim %}{% load django_athm %}{% endverbatim %}</code></pre>
+                                <pre data-prefix="25" class="text-warning"><code>{% verbatim %}{% athm_button ATHM_CONFIG %}{% endverbatim %}</code></pre>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,11 +175,11 @@
     </div>
 
     <!-- Features Grid -->
-    <div class="py-24">
-        <div class="container mx-auto px-6">
+    <div class="py-16 sm:py-20 md:py-24">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                         {% trans "Everything you need" %}
                     </h2>
                     <p class="text-lg text-base-content/60 max-w-2xl mx-auto">
@@ -151,7 +187,7 @@
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {% include 'partials/_feature_card.html' with title=_("Auto-Persistence") description=_("Transactions, items, and customers automatically saved to your database on callback.") icon_path="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" %}
                     {% include 'partials/_feature_card.html' with title=_("Django Admin Ready") description=_("Read-only dashboard with search, filtering, batch refunds, and webhook management.") icon_path="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" %}
                     {% include 'partials/_feature_card.html' with title=_("Django Signals") description=_('Four signals: <code class="text-xs bg-base-200 px-1 rounded">payment_completed</code>, <code class="text-xs bg-base-200 px-1 rounded">payment_cancelled</code>, <code class="text-xs bg-base-200 px-1 rounded">payment_expired</code>, <code class="text-xs bg-base-200 px-1 rounded">refund_sent</code>.') icon_path="M13 10V3L4 14h7v7l9-11h-7z" %}
@@ -163,11 +199,11 @@
     </div>
 
     <!-- Code Examples -->
-    <div class="py-24 bg-base-200">
-        <div class="container mx-auto px-6">
+    <div class="py-16 sm:py-20 md:py-24 bg-base-200">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                         {% trans "Built for Django" %}
                     </h2>
                     <p class="text-lg text-base-content/60">
@@ -219,11 +255,11 @@
     </div>
 
     <!-- How It Works -->
-    <div class="py-24">
-        <div class="container mx-auto px-6">
+    <div class="py-16 sm:py-20 md:py-24">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                         {% trans "How it works" %}
                     </h2>
                 </div>
@@ -261,9 +297,9 @@
 
 {% block footer %}
     <!-- Footer CTA -->
-    <footer class="py-24 bg-base-300">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-base-content">
+    <footer class="py-16 sm:py-20 md:py-24 bg-base-300">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-base-content">
                 {% trans "Ready to accept ATH Móvil payments in your Django app?" %}
             </h2>
             <p class="text-lg text-base-content/80 mb-8 max-w-xl mx-auto">
@@ -287,7 +323,7 @@
         <div class="container mx-auto px-6 text-center space-y-6">
             <p class="text-sm text-base-content/50 max-w-3xl mx-auto">
                 {% blocktrans trimmed %}
-                This project is <strong>not</strong> affiliated with or endorsed by <span class="text-accent">Evertec, Inc.</span> or <span class="text-accent">ATH Móvil</span> in any way.
+                This project is <strong>not</strong> affiliated with or endorsed by <a class="text-accent" target="_blank" href="https://evertecinc.com/">Evertec, Inc.</a> or <a class="text-accent" target="_blank" href="https://portal.athmovil.com/">ATH Móvil</a> in any way.
                 {% endblocktrans %}
             </p>
             <a href="https://github.com/django-athm/demo" target="_blank" class="btn btn-accent">{% trans "View this page's source code" %}</a>
@@ -304,4 +340,87 @@
 
 {% block extra_js %}
     <script src="https://djangowebring.com/static/webring.js"></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Django ATHM",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Cross-platform",
+        "description": "ATH Móvil payment integration library for Django applications with webhook support, automatic transaction persistence, Django signals, and admin dashboard.",
+        "url": "https://django-athm.dev",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "softwareVersion": "Latest",
+        "programmingLanguage": {
+            "@type": "ComputerLanguage",
+            "name": "Python"
+        },
+        "softwareRequirements": "Python 3.8-3.13, Django 4.2+",
+        "codeRepository": "https://github.com/django-athm/django-athm",
+        "author": {
+            "@type": "Organization",
+            "name": "Django ATHM",
+            "url": "https://django-athm.dev"
+        },
+        "inLanguage": ["en", "es"],
+        "keywords": "django, ath móvil, payment integration, puerto rico, webhook, ecommerce, django package"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Integrate ATH Móvil payments in Django",
+        "description": "Step-by-step guide to integrate ATH Móvil payment processing in your Django application",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Install",
+                "text": "Install the django-athm package using pip install django-athm",
+                "position": 1
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Configure",
+                "text": "Add API keys to your Django settings file",
+                "position": 2
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Install Webhooks",
+                "text": "Set up webhooks via Django Admin or manage.py command",
+                "position": 3
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Done",
+                "text": "Transactions sync automatically to your database",
+                "position": 4
+            }
+        ],
+        "totalTime": "PT10M"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Django ATHM",
+        "url": "https://django-athm.dev",
+        "description": "ATH Móvil payment integration for Django applications",
+        "inLanguage": ["en", "es"],
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://django-athm.readthedocs.io/en/latest/search.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 {% endblock %}

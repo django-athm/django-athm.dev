@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /athm/
+
+Sitemap: https://django-athm.dev/sitemap.xml

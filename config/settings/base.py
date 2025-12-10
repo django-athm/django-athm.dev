@@ -121,6 +121,9 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# Whitenoise root files (robots.txt, sitemap.xml served at root level)
+WHITENOISE_ROOT = BASE_DIR / "static"
+
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",

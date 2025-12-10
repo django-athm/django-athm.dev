@@ -8,10 +8,23 @@
             document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>
-    <title>{% block title %}{% trans "Django ATHM - ATH Móvil Payment Integration" %}{% endblock %}</title>
+    <title>{% block title %}Django ATHM - ATH Móvil Payment Integration for Django{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% block meta_description %}
+    <meta name="description" content="Django ATHM enables ATH Móvil payment integration for Django applications. Sync transactions via webhooks with auto-persistence, admin dashboard, and Django signals.">
+    {% endblock %}
+
+    {% block meta_robots %}{% endblock %}
+
+    <link rel="canonical" href="https://django-athm.dev{{ request.path }}">
+
+    <link rel="alternate" hreflang="en" href="https://django-athm.dev/en/">
+    <link rel="alternate" hreflang="es" href="https://django-athm.dev/es/">
+    <link rel="alternate" hreflang="x-default" href="https://django-athm.dev/en/">
+
     {% block meta_tags %}{% endblock %}
 
     <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
