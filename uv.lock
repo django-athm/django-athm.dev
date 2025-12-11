@@ -57,15 +57,15 @@ wheels = [
 
 [[package]]
 name = "athm"
-version = "0.4.0"
+version = "0.4.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/54/2c/e0fae769cbce1b8a10d981428f2b2e9fc4eb18adb55254b493f2e51b7d3b/athm-0.4.0.tar.gz", hash = "sha256:9fa918e67392d72b2aa901c2dcccb55f54c2d7587d89c98bd87afa94a994dfc7", size = 28922, upload-time = "2025-12-01T14:51:11.493Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6e/6d/e87e8f0072bb072f49f20a385e03ee34608cbc86d97c0792be4d44e0a452/athm-0.4.1.tar.gz", hash = "sha256:81ee7273c3cf279e04e4b70ff0eb172dd83bf9cb25d25e7645914fb1f68c3160", size = 31644, upload-time = "2025-12-10T22:13:58.372Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b8/57/ffca8fbcf3dbff4e211439cb1d3df9f100e1986aff30d6683fe876661263/athm-0.4.0-py3-none-any.whl", hash = "sha256:71c5934302761629004d969f18f592a68dbd2af78b3c27455ad7f1d2a5df803c", size = 17279, upload-time = "2025-12-01T14:51:10.096Z" },
+    { url = "https://files.pythonhosted.org/packages/25/5d/78595e98ae77ed111b1fc1e2de40946642e249e3b59485c216d25f30e38c/athm-0.4.1-py3-none-any.whl", hash = "sha256:f338cef2efb737270ad5bb2be8a1a4d2d7542cf2e1514c848f961ed7b3b94e5f", size = 18596, upload-time = "2025-12-10T22:13:56.932Z" },
 ]
 
 [[package]]
@@ -97,7 +97,7 @@ requires-dist = [
     { name = "dj-database-url", specifier = ">=3.0.1" },
     { name = "django", specifier = ">=5.2.8" },
     { name = "django-anymail", extras = ["amazon-ses"], specifier = ">=13.1" },
-    { name = "django-athm", specifier = "==1.0.0b1" },
+    { name = "django-athm", specifier = "==1.0.0b2" },
     { name = "django-tailwind", extras = ["cookiecutter", "honcho", "reload"], specifier = ">=4.4.1" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.2" },
@@ -361,14 +361,14 @@ amazon-ses = [
 
 [[package]]
 name = "django-athm"
-version = "1.0.0b1"
+version = "1.0.0b2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "athm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a3/d1/ee757036f98f18cfd3314b764525c547f35a6e1c9173c96340fbc4a41ea3/django_athm-1.0.0b1.tar.gz", hash = "sha256:eedc28c498767b528b0a391f46f7f94998af30dcb83bc2b7b726f34a3f4af954", size = 38385, upload-time = "2025-12-09T19:54:43.708Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d1/b0/a9bdb73a7902f797b5d34fce28203c1fba8ea5f0e34d8cff2b244cc9ca1c/django_athm-1.0.0b2.tar.gz", hash = "sha256:653d752814ebc6b1db06b63d5ffb745e093ef17ec97da0880fee8c0da707d722", size = 44944, upload-time = "2025-12-11T19:49:03.365Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/25/bb/edaca9e1137ef44d2bc36dc0994888ac9450c9a28679a049ff8e673ee38c/django_athm-1.0.0b1-py3-none-any.whl", hash = "sha256:b84b31f383b9c2ea60702ab113155cf8462f2669f8d4abdd78afb55d44033f48", size = 46223, upload-time = "2025-12-09T19:54:42.685Z" },
+    { url = "https://files.pythonhosted.org/packages/40/9b/28904157b03d934c441543dbc8f15fe823667c08d6b344d8db1d43518130/django_athm-1.0.0b2-py3-none-any.whl", hash = "sha256:33673c26f65c64b954d585c5a27c197f1397cf728a49ed2b3e4d7728d5d3e27e", size = 55095, upload-time = "2025-12-11T19:49:02.121Z" },
 ]
 
 [[package]]
