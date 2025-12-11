@@ -55,6 +55,14 @@
 
     <script>
         (function() {
+            function syncATHMTheme(theme) {
+                const athmTheme = theme === 'coffee' ? 'btn-dark' : 'btn';
+                document.querySelectorAll('.athm-button').forEach(function(btn) {
+                    btn.classList.remove('athm-btn', 'athm-btn-dark', 'athm-btn-light');
+                    btn.classList.add('athm-' + athmTheme);
+                });
+            }
+
             const themeController = document.querySelector('.theme-controller');
             if (themeController) {
                 const savedTheme = localStorage.getItem('theme');
@@ -63,10 +71,17 @@
                 }
 
                 themeController.addEventListener('change', function() {
-                    const theme = this.checked ? this.value : 'bumblebee';
+                    const theme = this.checked ? 'coffee' : 'bumblebee';
                     localStorage.setItem('theme', theme);
                     document.documentElement.setAttribute('data-theme', theme);
+                    syncATHMTheme(theme);
                 });
+            }
+
+            // Sync ATHM theme on initial load (after buttons render)
+            const savedTheme = localStorage.getItem('theme') || 'bumblebee';
+            if (savedTheme === 'coffee') {
+                syncATHMTheme(savedTheme);
             }
         })();
     </script>
