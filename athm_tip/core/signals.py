@@ -27,7 +27,7 @@ def handle_completed(sender, payment, **kwargs):
         f"Items: {payment.items.count()} | "
         f"Customer: {customer_name[0] if customer_name != 'N/A' else 'N/A'}*** "
         f"(Phone: ***{customer_phone[-4:] if len(customer_phone) >= 4 else customer_phone}) | "
-        f"Transaction Date: {payment.transaction_date or payment.created}"
+        f"Transaction Date: {payment.transaction_date or payment.created_at}"
     )
 
 
@@ -69,8 +69,8 @@ Metadata:
 - metadata_1: {payment.metadata_1 or "N/A"}
 - metadata_2: {payment.metadata_2 or "N/A"}
 
-Transaction Date: {payment.transaction_date or payment.created}
-Created: {payment.created}
+Transaction Date: {payment.transaction_date or payment.created_at}
+Created: {payment.created_at}
 """
 
     mail_admins(subject, message)
@@ -79,7 +79,7 @@ Created: {payment.created}
 @receiver(payment_cancelled)
 def handle_cancelled(sender, payment, **kwargs):
     """Log payment cancellation with duration analysis."""
-    duration = timezone.now() - payment.created
+    duration = timezone.now() - payment.created_at
 
     logger.info(
         f"[FAILED] Payment {payment.reference_number or payment.ecommerce_id} | "
@@ -87,14 +87,14 @@ def handle_cancelled(sender, payment, **kwargs):
         f"Total: ${payment.total} | "
         f"Items: {payment.items.count()} | "
         f"Duration: {duration.total_seconds():.1f}s | "
-        f"Created: {payment.created}"
+        f"Created: {payment.created_at}"
     )
 
 
 @receiver(payment_expired)
 def handle_expired(sender, payment, **kwargs):
     """Log payment expiration with duration analysis."""
-    duration = timezone.now() - payment.created
+    duration = timezone.now() - payment.created_at
 
     logger.info(
         f"[EXPIRED] Payment {payment.reference_number or payment.ecommerce_id} | "
@@ -102,7 +102,7 @@ def handle_expired(sender, payment, **kwargs):
         f"Total: ${payment.total} | "
         f"Items: {payment.items.count()} | "
         f"Duration: {duration.total_seconds():.1f}s | "
-        f"Created: {payment.created}"
+        f"Created: {payment.created_at}"
     )
 
 
@@ -118,5 +118,5 @@ def handle_refund(sender, refund, **kwargs):
         f"Original Total: ${payment.total} | "
         f"Total Refunded: ${payment.total_refunded_amount} | "
         f"Refundable Balance: ${payment.refundable_amount} | "
-        f"Refund Date: {refund.created}"
+        f"Refund Date: {refund.created_at}"
     )

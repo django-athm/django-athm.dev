@@ -60,8 +60,8 @@ def thank_you(request):
     payment = get_object_or_404(Payment, reference_number=reference_number)
 
     # Get webhook events for this payment
-    webhook_events = WebhookEvent.objects.filter(transaction=payment).order_by(
-        "-created"
+    webhook_events = WebhookEvent.objects.filter(payment=payment).order_by(
+        "-created_at"
     )
 
     context = {

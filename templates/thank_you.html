@@ -96,7 +96,7 @@
                             {% endif %}
                             <tr>
                                 <td class="font-medium text-base-content/60">{% trans "Date" %}</td>
-                                <td>{{ payment.transaction_date|default:payment.created|date:"M j, Y" }} {% trans "at" %} {{ payment.transaction_date|default:payment.created|time:"g:i A" }}</td>
+                                <td>{{ payment.transaction_date|default:payment.created_at|date:"M j, Y" }} {% trans "at" %} {{ payment.transaction_date|default:payment.created_at|time:"g:i A" }}</td>
                             </tr>
                             {% if payment.subtotal != payment.total %}
                             <tr>
