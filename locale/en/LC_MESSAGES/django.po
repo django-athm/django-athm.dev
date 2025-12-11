@@ -1,18 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Django ATHM Demo - English Translation
+# Copyright (C) 2025 Django ATHM
+# This file is distributed under the same license as the Django ATHM Demo package.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Django ATHM Demo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-09 16:46-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2025-12-11 13:32-0400\n"
+"PO-Revision-Date: 2025-12-11 12:00-0400\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -46,217 +44,280 @@ msgstr ""
 msgid "Missing payment reference."
 msgstr ""
 
-#: templates/base.html:5
-msgid "Django ATHM - ATH Móvil Payment Integration"
-msgstr ""
-
 #: templates/thank_you.html:4
-msgid "Payment Successful - Django ATHM"
-msgstr ""
-
-#: templates/thank_you.html:23
-msgid "Payment Not Found"
-msgstr ""
-
-#: templates/thank_you.html:24
-msgid "The payment reference is missing or invalid."
+msgid "Payment Confirmed"
 msgstr ""
 
 #: templates/thank_you.html:25
+msgid "Payment Not Found"
+msgstr ""
+
+#: templates/thank_you.html:26
+msgid "The payment reference is missing or invalid."
+msgstr ""
+
+#: templates/thank_you.html:31
+msgid ""
+"If you just completed a payment, please wait a moment and refresh the page."
+msgstr ""
+
+#: templates/thank_you.html:32
 msgid "Return to Demo"
 msgstr ""
 
+#: templates/thank_you.html:45
+msgid "Payment Completed"
+msgstr ""
+
+#: templates/thank_you.html:46
+msgid "Your payment was approved by ATH Movil."
+msgstr ""
+
+#: templates/thank_you.html:54
+msgid "Total Paid"
+msgstr ""
+
 #: templates/thank_you.html:56
-msgid "Thank you!"
+msgid "Amount charged"
 msgstr ""
 
-#: templates/thank_you.html:60
-msgid "Amount Paid"
+#: templates/thank_you.html:61
+msgid "Processing Fee"
 msgstr ""
 
-#: templates/thank_you.html:72
-msgid "Reference"
+#: templates/thank_you.html:63
+msgid "ATH Movil fee"
 msgstr ""
 
-#: templates/thank_you.html:77
-msgid "Ecommerce ID"
-msgstr ""
-
-#: templates/thank_you.html:82
-msgid "Date"
-msgstr ""
-
-#: templates/thank_you.html:88
-msgid "Customer"
-msgstr ""
-
-#: templates/thank_you.html:96
-msgid "Webhook Data"
-msgstr ""
-
-#: templates/thank_you.html:100
-msgid "Fee"
-msgstr ""
-
-#: templates/thank_you.html:104
+#: templates/thank_you.html:67
 msgid "Net Amount"
 msgstr ""
 
-#: templates/thank_you.html:119
-msgid "Auto-saved"
+#: templates/thank_you.html:69
+msgid "After fees"
 msgstr ""
 
-#: templates/thank_you.html:125
-msgid "Webhook"
+#: templates/thank_you.html:77
+msgid "Transaction Details"
 msgstr ""
 
-#: templates/thank_you.html:131
-msgid "Signals"
+#: templates/thank_you.html:84
+msgid "Reference"
 msgstr ""
 
-#: templates/thank_you.html:147 templates/tip.html:152
-msgid "Webhook Events"
+#: templates/thank_you.html:88
+msgid "Ecommerce ID"
+msgstr ""
+
+#: templates/thank_you.html:93
+msgid "Daily ID"
+msgstr ""
+
+#: templates/thank_you.html:98
+msgid "Date"
+msgstr ""
+
+#: templates/thank_you.html:99
+msgid "at"
+msgstr ""
+
+#: templates/thank_you.html:103
+msgid "Subtotal"
+msgstr ""
+
+#: templates/thank_you.html:107
+msgid "Tax"
+msgstr ""
+
+#: templates/thank_you.html:116
+msgid "Customer"
+msgstr ""
+
+#: templates/thank_you.html:122
+msgid "Name"
+msgstr ""
+
+#: templates/thank_you.html:128
+msgid "Email"
+msgstr ""
+
+#: templates/thank_you.html:134
+msgid "Phone"
+msgstr ""
+
+#: templates/thank_you.html:148
+msgid "What django-athm Did"
+msgstr ""
+
+#: templates/thank_you.html:155
+msgid "Payment initiated"
+msgstr ""
+
+#: templates/thank_you.html:156
+msgid "Payment record created when you clicked the ATH Movil button"
 msgstr ""
 
 #: templates/thank_you.html:166
-msgid "Processed"
+msgid "Webhook received"
+msgstr ""
+
+#: templates/thank_you.html:169
+msgid "Fee, net amount, and customer data enriched via webhook"
 msgstr ""
 
 #: templates/thank_you.html:171
-msgid "Pending"
+msgid "Waiting for webhook (fee and customer data will appear)"
 msgstr ""
 
-#: templates/thank_you.html:191
+#: templates/thank_you.html:183
+msgid "Django signals dispatched"
+msgstr ""
+
+#: templates/thank_you.html:187
+msgid "signal sent for custom handlers"
+msgstr ""
+
+#: templates/thank_you.html:189
+msgid "Signals fire after webhook processes"
+msgstr ""
+
+#: templates/thank_you.html:204
 msgid "Back to Demo"
 msgstr ""
 
-#: templates/thank_you.html:194
-msgid "Docs"
+#: templates/thank_you.html:207
+msgid "Documentation"
 msgstr ""
 
-#: templates/thank_you.html:209
+#: templates/thank_you.html:216
 msgid "Powered by"
 msgstr ""
 
-#: templates/tip.html:4
-msgid "Django ATHM - ATH Móvil Payment Integration for Django"
+#: templates/tip.html:17
+msgid ""
+"<div class=\"badge badge-primary badge-md sm:badge-lg text-xs sm:text-sm "
+"font-semibold py-3\"><a href=\"https://djangopackages.org/packages/p/django-"
+"athm/\" target=\"_blank\">Django Package</a></div>"
 msgstr ""
 
-#: templates/tip.html:17
+#: templates/tip.html:23
 msgid "ATH Móvil payments"
 msgstr ""
 
-#: templates/tip.html:18
+#: templates/tip.html:24
 msgid "for Django"
 msgstr ""
 
-#: templates/tip.html:22
+#: templates/tip.html:28
 msgid ""
 "Sync ATH Móvil transactions to your Django database via webhooks. Auto-"
 "persistence, admin dashboard, and signals included."
 msgstr ""
 
-#: templates/tip.html:26
+#: templates/tip.html:32
 msgid ""
-"This is an unofficial, community-maintained package. Not affiliated with ATH "
-"Móvil or Evertec."
+"<p>This is an unofficial, community-maintained package. </p> <p><strong>Not</"
+"strong> affiliated with  <a class=\"text-accent\" target=\"_blank\" "
+"href=\"https://evertecinc.com/\">Evertec, Inc.</a> or <a class=\"text-"
+"accent\" target=\"_blank\" href=\"https://portal.athmovil.com/\">ATH Móvil</"
+"a> in any way.<p>"
 msgstr ""
 
-#: templates/tip.html:32 templates/tip.html:268
+#: templates/tip.html:42 templates/tip.html:299
 msgid "Read Documentation"
 msgstr ""
 
-#: templates/tip.html:36
+#: templates/tip.html:46
 msgid "View on GitHub"
 msgstr ""
 
-#: templates/tip.html:44
-msgid "Python 3.8 - 3.13"
+#: templates/tip.html:54
+msgid "Python 3.10 - 3.14"
 msgstr ""
 
-#: templates/tip.html:48
-msgid "Django 4.2+"
+#: templates/tip.html:58
+msgid "Django 5.1 - 6.0"
 msgstr ""
 
-#: templates/tip.html:52
+#: templates/tip.html:62
 msgid "Latest ATH Móvil API"
 msgstr ""
 
-#: templates/tip.html:65
-msgid "Live Demo"
-msgstr ""
-
-#: templates/tip.html:66
+#: templates/tip.html:75
 msgid "Optional Quick-Start"
 msgstr ""
 
-#: templates/tip.html:69
+#: templates/tip.html:77
 msgid "Try it yourself"
 msgstr ""
 
-#: templates/tip.html:72
+#: templates/tip.html:80
 msgid ""
 "The included template tag provides a pre-built payment button for quick "
 "integration."
 msgstr ""
 
-#: templates/tip.html:81
+#: templates/tip.html:88
 msgid "Support the Project"
 msgstr ""
 
-#: templates/tip.html:85
+#: templates/tip.html:93
 msgid "Tip Amount"
 msgstr ""
 
-#: templates/tip.html:89
+#: templates/tip.html:95
 msgid "Supporting Django ATHM development"
 msgstr ""
 
-#: templates/tip.html:99
+#: templates/tip.html:110
 msgid "Real payment"
 msgstr ""
 
-#: templates/tip.html:100
+#: templates/tip.html:111
 msgid ""
 "Approving this transaction will charge $3.00 to your account. Thanks for "
 "supporting the project!"
 msgstr ""
 
-#: templates/tip.html:140
+#: templates/tip.html:137
+msgid "View full code in documentation"
+msgstr ""
+
+#: templates/tip.html:152
 msgid "Everything you need"
 msgstr ""
 
-#: templates/tip.html:143
+#: templates/tip.html:155
 msgid ""
-"Built for Django developers who want payment integration without the "
+"Developed for Django users who want payment integration without the "
 "complexity."
 msgstr ""
 
-#: templates/tip.html:148
+#: templates/tip.html:160
 msgid "Auto-Persistence"
 msgstr ""
 
-#: templates/tip.html:148
+#: templates/tip.html:160
 msgid ""
 "Transactions, items, and customers automatically saved to your database on "
 "callback."
 msgstr ""
 
-#: templates/tip.html:149
+#: templates/tip.html:161
 msgid "Django Admin Ready"
 msgstr ""
 
-#: templates/tip.html:149
+#: templates/tip.html:161
 msgid ""
 "Read-only dashboard with search, filtering, batch refunds, and webhook "
 "management."
 msgstr ""
 
-#: templates/tip.html:150
+#: templates/tip.html:162
 msgid "Django Signals"
 msgstr ""
 
-#: templates/tip.html:150
+#: templates/tip.html:162
 msgid ""
 "Four signals: <code class=\"text-xs bg-base-200 px-1 "
 "rounded\">payment_completed</code>, <code class=\"text-xs bg-base-200 px-1 "
@@ -265,89 +326,108 @@ msgid ""
 "rounded\">refund_sent</code>."
 msgstr ""
 
-#: templates/tip.html:151
+#: templates/tip.html:163
 msgid "One-Click Refunds"
 msgstr ""
 
-#: templates/tip.html:151
+#: templates/tip.html:163
 msgid ""
 "Process full or partial refunds directly from Django Admin with batch "
 "support."
 msgstr ""
 
-#: templates/tip.html:152
+#: templates/tip.html:164
+msgid "Webhook Events"
+msgstr ""
+
+#: templates/tip.html:164
 msgid ""
 "Automatic webhook handling with idempotency keys. Events logged and "
 "deduplicated."
 msgstr ""
 
-#: templates/tip.html:164
-msgid "Built for Django"
+#: templates/tip.html:165
+msgid "Transaction Sync"
 msgstr ""
 
-#: templates/tip.html:167
-msgid "Familiar patterns, zero friction."
+#: templates/tip.html:165
+msgid ""
+"Reconcile with ATH Móvil via <code class=\"text-xs bg-base-200 px-1 "
+"rounded\">athm_sync</code> management command."
 msgstr ""
 
-#: templates/tip.html:175
+#: templates/tip.html:177
+msgid "Purpose built for Django"
+msgstr ""
+
+#: templates/tip.html:180
+msgid "Familiar patterns with batteries included."
+msgstr ""
+
+#: templates/tip.html:188
 msgid "Handle payment events with signals"
 msgstr ""
 
-#: templates/tip.html:194
+#: templates/tip.html:207
 msgid "Query webhook events with automatic deduplication"
 msgstr ""
 
-#: templates/tip.html:220
+#: templates/tip.html:226
+msgid "Reconcile transactions with ATH Móvil"
+msgstr ""
+
+#: templates/tip.html:251
 msgid "How it works"
 msgstr ""
 
-#: templates/tip.html:227
+#: templates/tip.html:258
 msgid "Install"
 msgstr ""
 
-#: templates/tip.html:233
+#: templates/tip.html:264
 msgid "Configure"
 msgstr ""
 
-#: templates/tip.html:234
-msgid "Add API keys to settings"
+#: templates/tip.html:265
+msgid "Add API keys and app to settings"
 msgstr ""
 
-#: templates/tip.html:239
+#: templates/tip.html:270
 msgid "Install Webhooks"
 msgstr ""
 
-#: templates/tip.html:240
-msgid "Via Admin or manage.py"
+#: templates/tip.html:271
+msgid "Via Admin or manage.py command"
 msgstr ""
 
-#: templates/tip.html:245
+#: templates/tip.html:276
 msgid "Done"
 msgstr ""
 
-#: templates/tip.html:246
-msgid "Transactions sync automatically"
+#: templates/tip.html:277
+msgid "Transactions sync to your DB automatically"
 msgstr ""
 
-#: templates/tip.html:260
+#: templates/tip.html:291
 msgid "Ready to integrate ATH Móvil payments into your Django app?"
 msgstr ""
 
-#: templates/tip.html:263
+#: templates/tip.html:294
 msgid "Get started in minutes with our comprehensive documentation."
 msgstr ""
 
-#: templates/tip.html:272
+#: templates/tip.html:303
 msgid "Star on GitHub"
 msgstr ""
 
-#: templates/tip.html:282
+#: templates/tip.html:313
 msgid ""
-"This project is <strong>not</strong> affiliated with or endorsed by <span "
-"class=\"text-accent\">Evertec, Inc.</span> or <span class=\"text-"
-"accent\">ATH Móvil</span> in any way."
+"This project is <strong>not</strong> affiliated with or endorsed by <a "
+"class=\"text-accent\" target=\"_blank\" href=\"https://evertecinc.com/"
+"\">Evertec, Inc.</a> or <a class=\"text-accent\" target=\"_blank\" "
+"href=\"https://portal.athmovil.com/\">ATH Móvil</a> in any way."
 msgstr ""
 
-#: templates/tip.html:286
+#: templates/tip.html:317
 msgid "View this page's source code"
 msgstr ""
