@@ -24,7 +24,6 @@ def handle_completed(sender, payment, **kwargs):
         f"ID: {payment.ecommerce_id} | "
         f"Total: ${payment.total} (Subtotal: ${payment.subtotal}, Tax: ${payment.tax}) | "
         f"Fee: ${payment.fee}, Net: ${payment.net_amount} | "
-        f"Items: {payment.items.count()} | "
         f"Customer: {customer_name[0] if customer_name != 'N/A' else 'N/A'}*** "
         f"(Phone: ***{customer_phone[-4:] if len(customer_phone) >= 4 else customer_phone}) | "
         f"Transaction Date: {payment.transaction_date or payment.created_at}"
@@ -35,14 +34,6 @@ def handle_completed(sender, payment, **kwargs):
 def notify_admins(sender, payment, **kwargs):
     """Send email notification to admins with full payment details."""
     subject = f"New Payment: ${payment.total} - {payment.reference_number}"
-
-    items_list = payment.items.all()
-    items_text = "\n".join(
-        [
-            f"  - {item.name}: ${item.price} x {item.quantity} = ${item.price * item.quantity}"
-            for item in items_list
-        ]
-    )
 
     message = f"""New payment completed via django-athm:
 
@@ -61,9 +52,6 @@ Customer:
 - Name: {payment.customer_name or "N/A"}
 - Phone: {payment.customer_phone or "N/A"}
 - Email: {payment.customer_email or "N/A"}
-
-Line Items ({items_list.count()}):
-{items_text or "  (none)"}
 
 Metadata:
 - metadata_1: {payment.metadata_1 or "N/A"}
@@ -85,7 +73,6 @@ def handle_cancelled(sender, payment, **kwargs):
         f"[FAILED] Payment {payment.reference_number or payment.ecommerce_id} | "
         f"ID: {payment.ecommerce_id} | "
         f"Total: ${payment.total} | "
-        f"Items: {payment.items.count()} | "
         f"Duration: {duration.total_seconds():.1f}s | "
         f"Created: {payment.created_at}"
     )
@@ -100,7 +87,6 @@ def handle_expired(sender, payment, **kwargs):
         f"[EXPIRED] Payment {payment.reference_number or payment.ecommerce_id} | "
         f"ID: {payment.ecommerce_id} | "
         f"Total: ${payment.total} | "
-        f"Items: {payment.items.count()} | "
         f"Duration: {duration.total_seconds():.1f}s | "
         f"Created: {payment.created_at}"
     )
