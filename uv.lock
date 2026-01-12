@@ -97,7 +97,7 @@ requires-dist = [
     { name = "dj-database-url", specifier = ">=3.0.1" },
     { name = "django", specifier = ">=5.2.8" },
     { name = "django-anymail", extras = ["amazon-ses"], specifier = ">=13.1" },
-    { name = "django-athm", specifier = "==1.0.1" },
+    { name = "django-athm", specifier = "==1.0.2" },
     { name = "django-tailwind", extras = ["cookiecutter", "honcho", "reload"], specifier = ">=4.4.1" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.2" },
@@ -361,14 +361,14 @@ amazon-ses = [
 
 [[package]]
 name = "django-athm"
-version = "1.0.1"
+version = "1.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "athm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f8/0b/753f4c370baa0323da36948f65e1e931ed72701d70049ea85e11972e5d36/django_athm-1.0.1.tar.gz", hash = "sha256:73c9e5431b7fd6350bb0069538d898a55c5bb7de36c9083392083d39593858e4", size = 45387, upload-time = "2025-12-17T20:51:42.682Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/76/2c/94a1ce34224eaa8a20b50149d8178931c97a998bff0feeff1e0c4751e51e/django_athm-1.0.2.tar.gz", hash = "sha256:2191ba2282329dbe6221b21cf2d8474ceaba6a3cfd96ba2d271d76c7df8ff510", size = 45628, upload-time = "2026-01-12T18:30:37.047Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/39/bc/e60dcab0aee7470ea7111b9f75f83d18374c4f8a1d6ce3411cbf7939a368/django_athm-1.0.1-py3-none-any.whl", hash = "sha256:c60584006c9cc802e0cd8dc262854f54d0415e30ee66f07741e132bf82f3734e", size = 56297, upload-time = "2025-12-17T20:51:41.453Z" },
+    { url = "https://files.pythonhosted.org/packages/0e/93/cea5bacd8c551028b9d951afe6a3890b69f3a82809c0ef3df60c05d64d46/django_athm-1.0.2-py3-none-any.whl", hash = "sha256:dc69072dfc4dc15dd5c82d656f92b18d2e4e4708c0d6dc1e3623a7cc76d96033", size = 56525, upload-time = "2026-01-12T18:30:34.448Z" },
 ]
 
 [[package]]
